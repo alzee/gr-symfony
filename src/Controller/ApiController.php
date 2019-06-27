@@ -10,7 +10,7 @@ class ApiController extends AbstractController
 {
     /**
      * @Route("/", name="api_index", host="api")
-     * @Route("/api", name="api_index1", host="{ip}", requirements={"ip"="192.168.10.55|127.0.0.1"})
+     * @Route("/api", name="api_index1", host="{host}", requirements={"host"="192.168.10.55|127.0.0.1|gr"})
      */
     public function index()
     {
@@ -25,12 +25,12 @@ class ApiController extends AbstractController
     
     /**
      * @Route("/ip", name="api", host="api")
-     * @Route("/api/ip", name="api1", host="{ip}", requirements={"ip"="192.168.10.55|127.0.0.1"})
+     * @Route("/api/ip", name="api1", host="{ip}", requirements={"ip"="192.168.10.55|127.0.0.1|gr"})
      */
     public function ip()
     {
         $mysqli = new \Mysqli('localhost', 'root', 's', 'gr');
-        $mysqli->set_charset('utf-8');
+        $mysqli->set_charset('utf8');
 
         $sql = 'select ip,label,sid,sname,zid,zname from ip';
 
