@@ -1,11 +1,12 @@
+/*
 var xhr = new XMLHttpRequest();
-xhr.onreadystatechange = fuck;
-xhr.open('GET','api/ip');
+xhr.onreadystatechange = render;
 xhr.responseType = 'json';
+xhr.open('GET','api/ip');
 xhr.send();
 
 
-function fuck(){
+function render(){
   if(xhr.readyState === 4 && xhr.status === 200) {
     i = xhr.response;
     var t = ['<%', '%>'];
@@ -19,12 +20,32 @@ function fuck(){
     tbody.innerHTML = Mustache.render(tpl.innerHTML, o);
   }
 }
+*/
 
+var tr = document.querySelectorAll('tbody tr');
+var tb = document.getElementById('tbody');
 
 var s = document.getElementById('search');
 s.addEventListener('keyup', search);
 
 function search(){
-  console.log(1);
+	var v = this.value;
+	if(v == ''){
+		tb.classList.add('d-none');
+	}
+	else {
+		tb.classList.remove('d-none');
+		for(var i=0;i<tr.length;i++){
+			for(var j=tr[i].firstElementChild;j;j=j.nextElementSibling){
+				if(j.innerText.indexOf(v) !== -1){
+					tr[i].classList.remove('d-none');
+					j=1;
+					break;
+				}
+			}
+			if(j!==1) tr[i].classList.add('d-none');
+		}
+	}
+
 }
 

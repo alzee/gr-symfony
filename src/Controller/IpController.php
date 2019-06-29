@@ -12,9 +12,16 @@ class IpController extends AbstractController
      */
     public function index()
     {
-      
-        return $this->render('ip/index.html.twig', [
-            'controller_name' => 'IpController',
-        ]);
+      $mysqli = new \Mysqli('localhost', 'root', 's', 'gr');
+      $mysqli->set_charset('utf8');
+
+      $sql = 'select ip,label,ip.sid,ip.sname,ip.zid,ip.zname,pinyin,acronym from ip left join shop on ip.sid = shop.sid';
+
+      $res = $mysqli->query($sql);
+
+      $rows = $res->fetch_all(MYSQLI_ASSOC);
+      // print_r($rows);
+
+      return $this->render('ip/index.html.twig', ['rows'=> $rows]);
     }
 }
