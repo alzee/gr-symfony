@@ -15,7 +15,7 @@ class IpController extends AbstractController
       $mysqli = new \Mysqli('localhost', 'root', 's', 'gr');
       $mysqli->set_charset('utf8');
 
-      $sql = 'select ip,label,ip.sid,ip.sname,ip.zid,ip.zname,pinyin,acronym from ip left join shop on ip.sid = shop.sid';
+      $sql = 'select ip,label,sid,sname,zid,zname from ip';
 
       $res = $mysqli->query($sql);
 

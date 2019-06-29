@@ -22,8 +22,16 @@ function render(){
 }
 */
 
-var tr = document.querySelectorAll('tbody tr');
 var tb = document.getElementById('tbody');
+var tr = tb.getElementsByTagName('tr');
+//var tr = document.querySelectorAll('tbody tr');
+
+for(var i=0; i<tr.length;i++){
+	var sname = tr[i].getElementsByClassName('sname')[0].innerText;
+	var zname = tr[i].getElementsByClassName('zname')[0].innerText;
+	tr[i].getElementsByClassName('pinyin')[0].innerText = pinyinUtil.getPinyin(sname, '', 0);
+	tr[i].getElementsByClassName('pinyinZ')[0].innerText = pinyinUtil.getPinyin(zname, '', 0);
+}
 
 var s = document.getElementById('search');
 s.addEventListener('keyup', search);

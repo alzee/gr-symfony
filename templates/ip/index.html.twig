@@ -30,29 +30,24 @@
 </tr>
 </thead>
 <tbody id="tbody">
-<!--
-<script id="tpl" type"x-tmpl">
--->
 {% for i in rows %}
 <tr class="d-none">
 <td contenteditable="true">{{ i.label }}</td>
 <td contenteditable="true">{{ i.ip }}</td>
 <td contenteditable="true">{{ i.sid }}</td>
-<td contenteditable="true">{{ i.sname }}</td>
-<td contenteditable="true" class="d-none">{{ i.pinyin }}</td>
-<td contenteditable="true" class="d-none">{{ i.acronym }}</td>
-<td contenteditable="true">{{ i.zname }}</td>
+<td contenteditable="true" class="sname">{{ i.sname }}</td>
+<td contenteditable="true" class="d-none pinyin"></td>
+<td contenteditable="true" class="zname">{{ i.zname }}</td>
+<td contenteditable="true" class="d-none pinyinZ"></td>
 </tr>
 {% endfor %}
-<!--
-</script>
--->
 </tbody>
 </table>
 </main>
 {% endblock %}
 
 {% block javascripts %}
-	<script src="js/mustache.min.js"></script>
+	<script src="js/pinyin_dict_notone.js"></script>
+	<script src="js/pinyinUtil.js"></script>
 	<script src="js/z.js"></script>
 {% endblock %}
