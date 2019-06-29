@@ -29,6 +29,9 @@ var s = document.getElementById('search');
 s.addEventListener('keyup', search);
 
 function search(){
+	if(event.key == ','){
+		s.value = '';
+	}
 	var v = this.value;
 	if(v == ''){
 		tb.classList.add('d-none');
