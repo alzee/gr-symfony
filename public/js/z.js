@@ -41,22 +41,30 @@ function search(){
 		s.value = '';
 	}
 	var v = this.value;
-	if(v == ''){
-		tb.classList.add('d-none');
-	}
-	else {
-		tb.classList.remove('d-none');
-		for(var i=0;i<tr.length;i++){
-			for(var j=tr[i].firstElementChild;j;j=j.nextElementSibling){
-				if(j.innerText.indexOf(v) !== -1){
-					tr[i].classList.remove('d-none');
-					j=1;
-					break;
-				}
+	console.log(v);
+	switch (v) {
+		case '':
+			tb.classList.add('d-none');
+			break;
+		case '*':
+			tb.classList.remove('d-none');
+			for(var i = 0; i < tr.length; i++) { 
+				tr[i].classList.remove('d-none');
 			}
-			if(j!==1) tr[i].classList.add('d-none');
-		}
+			break;
+		default:
+			tb.classList.remove('d-none');
+			for(var i = 0; i < tr.length; i++){
+				var searchable = tr[i].getElementsByClassName('searchable');
+				for(var j = 0; j < searchable.length; j++){
+					if(searchable[j].innerText.indexOf(v) !== -1){
+						tr[i].classList.remove('d-none');
+						j=0;
+						break;
+					}
+				}
+				if(j!==0) tr[i].classList.add('d-none');
+			}
 	}
-
 }
 
