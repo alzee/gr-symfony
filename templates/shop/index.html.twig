@@ -2,21 +2,18 @@
 
 {% block title %}shop{% endblock %}
 
-{% block body %}
+{% block main %}
 <main class="container">
-
-<div class="input-group pt-4 pb-2">
-  <div class="input-group-prepend">
-    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">label </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div role="separator" class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div>
+<div class="row pt-4 pb-2">
+  <div class="col-auto">
+    <button type="button" class="btn btn-outline-danger">
+      export
+      <span class="badge badge-light" id="count">0 / 0</span>
+    </button>
   </div>
-  <input id="search" type="text" autofocus class="form-control" aria-label="Text input with dropdown button">
+  <div class="input-group col">
+    <input id="search" type="text" autofocus class="form-control" aria-label="Text input with dropdown button">
+  </div>
 </div>
 
 <table class="table table-hover">
@@ -45,8 +42,7 @@
 </main>
 {% endblock %}
 
-{% block javascripts %}
+{% block js1 %}
 	<script src="/js/pinyin_dict_notone.js"></script>
 	<script src="/js/pinyinUtil.js"></script>
-	<script src="/js/z.js"></script>
 {% endblock %}
