@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Db;
 
 class IpController extends AbstractController
 {
@@ -12,16 +13,9 @@ class IpController extends AbstractController
      */
     public function index()
     {
-        $mysqli = new \Mysqli('localhost', 'root', 's', 'gr');
-        $mysqli->set_charset('utf8');
-
         $sql = 'select ip,label,sid,sname,zid,zname from ip';
-
-        $res = $mysqli->query($sql);
-
-        $rows = $res->fetch_all(MYSQLI_ASSOC);
-        // print_r($rows);
-
+        // $rows = (new Db)->q($sql);
+        $rows = Db::mysql($sql);
         return $this->render('ip/index.html.twig', ['rows'=> $rows]);
     }
 }
