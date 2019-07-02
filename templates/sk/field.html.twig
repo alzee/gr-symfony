@@ -35,7 +35,7 @@
 {% for i in rows %}
 <tr class="d-none">
 {% for j in i %}
-<td contenteditable="true" class="searchable">{{ j }}</td>
+<td contenteditable="true" class="">{{ j }}</td>
 {% endfor %}
 </tr>
 {% endfor %}
@@ -45,7 +45,7 @@
 {% endblock %}
 
 {% block javascripts %}
-	<script src="js/pinyin_dict_notone.js"></script>
-	<script src="js/pinyinUtil.js"></script>
-	<script src="js/z.js"></script>
+	<script src="/js/pinyin_dict_notone.js"></script>
+	<script src="/js/pinyinUtil.js"></script>
+	<script src="/js/z.js"></script>
 {% endblock %}

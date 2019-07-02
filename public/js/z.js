@@ -1,32 +1,9 @@
-/*
-var xhr = new XMLHttpRequest();
-xhr.onreadystatechange = render;
-xhr.responseType = 'json';
-xhr.open('GET','api/ip');
-xhr.send();
-
-
-function render(){
-  if(xhr.readyState === 4 && xhr.status === 200) {
-    i = xhr.response;
-    var t = ['<%', '%>'];
-    Mustache.tags = t;
-    var tpl = document.getElementById('tpl');
-    Mustache.parse(tpl.innerHTML);
-    var tbody = document.getElementById('tbody');
-    var o = {
-      rows: i 
-    };
-    tbody.innerHTML = Mustache.render(tpl.innerHTML, o);
-  }
-}
-*/
-
 var tb = document.getElementById('tbody');
 var tr = tb.getElementsByTagName('tr');
 //var tr = document.querySelectorAll('tbody tr');
 
 for(var i=0; i<tr.length;i++){
+	// Get pinyin of .wantPinyin then push to .pinyin
 	var wantPinyin = tr[i].getElementsByClassName('wantPinyin');
 	var pinyin = tr[i].getElementsByClassName('pinyin')[0];
 	for (var j=0; j < wantPinyin.length; j++){
@@ -55,7 +32,16 @@ function search(){
 		default:
 			tb.classList.remove('d-none');
 			for(var i = 0; i < tr.length; i++){
-				if(tr[i].textContent.indexOf(v) !== -1){
+				// textContent of .notMe are not for searching
+				// Remvoe them from tr[i].textContent
+				var notMe = tr[i].getElementsByClassName('notMe');
+				var text = tr[i].textContent;
+				if(notMe){
+					for(var j=0; j < notMe.length; j++){
+						text = text.replace(notMe[j].textContent,'');
+					}
+				}
+				if(text.indexOf(v) !== -1){
 					tr[i].classList.remove('d-none');
 				}
 				else {
