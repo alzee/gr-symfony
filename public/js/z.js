@@ -27,10 +27,11 @@ var tr = tb.getElementsByTagName('tr');
 //var tr = document.querySelectorAll('tbody tr');
 
 for(var i=0; i<tr.length;i++){
-	var sname = tr[i].getElementsByClassName('sname')[0].innerText;
-	var zname = tr[i].getElementsByClassName('zname')[0].innerText;
-	tr[i].getElementsByClassName('pinyin')[0].innerText = pinyinUtil.getPinyin(sname, '', 0);
-	tr[i].getElementsByClassName('pinyinZ')[0].innerText = pinyinUtil.getPinyin(zname, '', 0);
+	var wantPinyin = tr[i].getElementsByClassName('wantPinyin');
+	var pinyin = tr[i].getElementsByClassName('pinyin')[0];
+	for (var j=0; j < wantPinyin.length; j++){
+		pinyin.innerText += (pinyinUtil.getPinyin(wantPinyin[j].innerText, '', 0) + ' ')
+	}
 }
 
 var s = document.getElementById('search');
@@ -41,7 +42,6 @@ function search(){
 		s.value = '';
 	}
 	var v = this.value;
-	console.log(v);
 	switch (v) {
 		case '':
 			tb.classList.add('d-none');
@@ -55,15 +55,12 @@ function search(){
 		default:
 			tb.classList.remove('d-none');
 			for(var i = 0; i < tr.length; i++){
-				var searchable = tr[i].getElementsByClassName('searchable');
-				for(var j = 0; j < searchable.length; j++){
-					if(searchable[j].innerText.indexOf(v) !== -1){
-						tr[i].classList.remove('d-none');
-						j=0;
-						break;
-					}
+				if(tr[i].textContent.indexOf(v) !== -1){
+					tr[i].classList.remove('d-none');
 				}
-				if(j!==0) tr[i].classList.add('d-none');
+				else {
+					tr[i].classList.add('d-none');
+				}
 			}
 	}
 }

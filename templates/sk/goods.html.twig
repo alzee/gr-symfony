@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}shop{% endblock %}
+{% block title %}goods{% endblock %}
 
 {% block body %}
 <main class="container">
@@ -19,25 +19,24 @@
   <input id="search" type="text" autofocus class="form-control" aria-label="Text input with dropdown button">
 </div>
 
-<table class="table table-hover">
+<table class="table table-hover table-responsive">
 <thead class="thead-light">
 <tr>
+<!--
 <th scope="col">门店ID</th>
 <th scope="col">门店名称</th>
 <th scope="col">农商行</th>
 <th scope="col">友德医</th>
 <th scope="col">战区</th>
+-->
 </tr>
 </thead>
 <tbody id="tbody">
 {% for i in rows %}
-<tr class="d-none">
-<td contenteditable="true" class="">{{ i.sid}}</td>
-<td contenteditable="true" class="wantPinyin">{{ i.sname }}</td>
-<td contenteditable="true" class="d-none pinyin"></td>
-<td contenteditable="true" class="">{{ i.rcb }}</td>
-<td contenteditable="true" class="">{{ i.youdeyi}}</td>
-<td contenteditable="true" class="wantPinyin">{{ i.zname}}</td>
+<tr class="">
+{% for j in i %}
+<td contenteditable="true" class="searchable">{{ j }}</td>
+{% endfor %}
 </tr>
 {% endfor %}
 </tbody>

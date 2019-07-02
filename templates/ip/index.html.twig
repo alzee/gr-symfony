@@ -32,13 +32,12 @@
 <tbody id="tbody">
 {% for i in rows %}
 <tr class="d-none">
-<td contenteditable="true" class="searchable">{{ i.label }}</td>
-<td contenteditable="true" class="searchable">{{ i.ip }}</td>
-<td contenteditable="true" class="searchable">{{ i.sid }}</td>
-<td contenteditable="true" class="searchable sname">{{ i.sname }}</td>
-<td contenteditable="true" class="searchable d-none pinyin"></td>
-<td contenteditable="true" class="searchable zname">{{ i.zname }}</td>
-<td contenteditable="true" class="searchable d-none pinyinZ"></td>
+<td contenteditable="true" class="">{{ i.label }}</td>
+<td contenteditable="true" class="">{{ i.ip }}</td>
+<td contenteditable="true" class="">{{ i.sid }}</td>
+<td contenteditable="true" class="d-none pinyin"></td>
+<td contenteditable="true" class="wantPinyin">{{ i.sname }}</td>
+<td contenteditable="true" class="wantPinyin">{{ i.zname }}</td>
 </tr>
 {% endfor %}
 </tbody>
@@ -47,7 +46,7 @@
 {% endblock %}
 
 {% block javascripts %}
-	<script src="js/pinyin_dict_notone.js"></script>
-	<script src="js/pinyinUtil.js"></script>
-	<script src="js/z.js"></script>
+	<script src="/js/pinyin_dict_notone.js"></script>
+	<script src="/js/pinyinUtil.js"></script>
+	<script src="/js/z.js"></script>
 {% endblock %}
