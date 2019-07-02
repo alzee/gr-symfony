@@ -26,7 +26,7 @@ class Db
     {
     }
     
-    public function q($sql)
+    public function query($sql)
     {
         return $this->mysqli->query($sql)->fetch_all(MYSQLI_ASSOC);
     }
