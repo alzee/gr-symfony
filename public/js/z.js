@@ -1,3 +1,41 @@
+var entity = document.getElementsByClassName('entity');
+if (entity) {
+  for (var i = 0; i < entity.length; i++) {
+    entity[i].addEventListener('click', extend)
+    var input = entity[i].getElementsByTagName('input');
+    for (var j = 0; j < input.length; j++) {
+      input[j].addEventListener('keyup', subTotal)
+    }
+  }
+}
+
+function extend()
+{
+  for (var i = 0; i < entity.length; i++) {
+    if (entity[i] !== event.target) return;
+    //entity[i].getElementsByClassName('sum')[0].classList.remove('d-none');
+    //entity[i].getElementsByClassName('detail')[0].classList.remove('d-flex');
+  }
+  this.getElementsByClassName('sum')[0].classList.toggle('d-none');
+  this.getElementsByClassName('detail')[0].classList.toggle('d-flex');
+}
+
+function subTotal()
+{
+  var count = document.getElementById('count');
+  var input = this.parentNode.parentNode.getElementsByTagName('input');
+  var span = this.parentNode.parentNode.nextElementSibling.firstElementChild.firstElementChild;
+  for (var i = 0, t = 0; i < input.length; i++) {
+    t += Number(input[i].value);
+  }
+  span.innerText = t;
+  if (t > 0) {
+    span.parentNode.removeAttribute('disabled');
+  }
+  else {
+    span.parentNode.setAttribute('disabled', "");
+  }
+}
 
 var tb = document.getElementById('tbody');
 var tr = tb.getElementsByTagName('tr');
