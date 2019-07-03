@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}shop{% endblock %}
+
+{% block main %}
+<main class="container">
+<table class="table table-hover">
+<thead class="thead-light">
+<tr>
+<!--
+<th scope="col">门店ID</th>
+<th scope="col">门店名称</th>
+<th scope="col">农商行</th>
+<th scope="col">友德医</th>
+<th scope="col">战区</th>
+-->
+</tr>
+</thead>
+<tbody id="tbody">
+{% for i in rows %}
+<tr class="d-none">
+{% for j in i %}
+<td contenteditable="true" class="">{{ j }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</main>
+{% endblock %}
+
+{% block js1 %}
+	<script src="/js/pinyin_dict_notone.js"></script>
+	<script src="/js/pinyinUtil.js"></script>
+{% endblock %}

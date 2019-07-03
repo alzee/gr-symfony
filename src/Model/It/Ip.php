@@ -6,7 +6,7 @@
  * @todo
  */
 
-namespace App\Model;
+namespace App\Model\It;
 
 use App\Db;
 

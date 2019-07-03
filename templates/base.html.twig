@@ -17,7 +17,6 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-        
         {% set currentPath = path(app.request.attributes.get('_route')) %}
         <div class="collapse navbar-collapse" id="">
         <ul class="navbar-nav mr-auto">
@@ -45,6 +44,21 @@
         </div>
         </div>
         </nav>
+        {% endblock %}
+        {% block header %}
+        <header class="container">
+        <div class="row pt-4 pb-2">
+          <div class="col-auto">
+            <button type="button" class="btn btn-outline-danger">
+              export
+              <span class="badge badge-light" id="count">0 / 0</span>
+            </button>
+          </div>
+          <div class="input-group col">
+            <input id="search" type="text" autofocus class="form-control" aria-label="Text input with dropdown button">
+          </div>
+        </div>
+        </header>
         {% endblock %}
         {% block main %}{% endblock %}
         {% block js1 %} {% endblock %}

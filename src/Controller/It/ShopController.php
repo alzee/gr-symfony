@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\It;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Model\Shop;
+use App\Model\It\Shop;
 
 class ShopController extends AbstractController
 {
@@ -14,6 +14,6 @@ class ShopController extends AbstractController
     public function index()
     {
         $rows = Shop::list();
-        return $this->render('shop/index.html.twig', ['rows' => $rows]);
+        return $this->render('it/shop.html.twig', ['rows' => $rows]);
     }
 }

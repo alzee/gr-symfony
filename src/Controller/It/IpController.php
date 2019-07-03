@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\It;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Model\Ip;
+use App\Model\It\Ip;
 
 class IpController extends AbstractController
 {
@@ -14,6 +14,6 @@ class IpController extends AbstractController
     public function index()
     {
         $rows = Ip::list();
-        return $this->render('ip/index.html.twig', ['rows' => $rows]);
+        return $this->render('it/ip.html.twig', ['rows' => $rows]);
     }
 }
