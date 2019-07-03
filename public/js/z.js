@@ -11,10 +11,15 @@ if (entity) {
 
 function extend()
 {
+  console.log(event.currentTarget);
+  console.log(event.target);
+  //if (entity[i] !== event.target) continue;
+  if (event.currentTarget !== event.target) return;
   for (var i = 0; i < entity.length; i++) {
-    if (entity[i] !== event.target) return;
-    //entity[i].getElementsByClassName('sum')[0].classList.remove('d-none');
-    //entity[i].getElementsByClassName('detail')[0].classList.remove('d-flex');
+    if (event.currentTarget !== entity[i]) {
+      entity[i].getElementsByClassName('sum')[0].classList.remove('d-none');
+      entity[i].getElementsByClassName('detail')[0].classList.remove('d-flex');
+    }
   }
   this.getElementsByClassName('sum')[0].classList.toggle('d-none');
   this.getElementsByClassName('detail')[0].classList.toggle('d-flex');
