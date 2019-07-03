@@ -14,6 +14,6 @@ class ShopController extends AbstractController
     public function index()
     {
         $rows = Shop::list();
-        return $this->render('shop/index.html.twig', ['rows'=> $rows]);
+        return $this->render('shop/index.html.twig', ['rows' => $rows]);
     }
 }

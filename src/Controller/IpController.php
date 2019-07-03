@@ -14,6 +14,6 @@ class IpController extends AbstractController
     public function index()
     {
         $rows = Ip::list();
-        return $this->render('ip/index.html.twig', ['rows'=> $rows]);
+        return $this->render('ip/index.html.twig', ['rows' => $rows]);
     }
 }
