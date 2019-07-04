@@ -14,6 +14,16 @@ class MarketController extends AbstractController
     public function list()
     {
         $rows = Market::list();
-        return $this->render('sk/market.html.twig', ['rows'=> $rows]);
+        return $this->render('sk/market/list.html.twig', ['rows'=> $rows]);
     }
+
+    /**
+     * @Route("/sk/market/push", name="market_push")
+     */
+    public function push()
+    {
+        // $rows = Market::list();
+        return $this->render('sk/market/push.html.twig');
+    }
+
 }

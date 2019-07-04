@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}shop{% endblock %}
+
+{% block header %}
+        <header class="container">
+        <div class="row pt-4 pb-2">
+          <div class="col-auto">
+            <a class="btn btn-danger" href="{{ path('market') }}" role="button">
+            <i class="fas fa-arrow-left"></i> 返回市场 
+            </a>
+          </div>
+          <div class="input-group col">
+            <input id="search" type="text" placeholder="搜索商品编号或名称" autofocus class="form-control" aria-label="Text input with dropdown button">
+          </div>
+        </div>
+        </header>
+{% endblock %}
+{% block main %}
+<main class="container">
+  <div class="px-5 rounded entity d-flex flex-column flex-md-row py-3 justify-content-between align-items-center border-bottom">
+    <div class="">111111</div>
+    <div class="">阿莫西林</div>
+    <!--
+    <div class="">20190105</div>
+    -->
+    <div class="sum">55</div>
+
+    <div class="detail d-none align-items-center justify-content-between">
+      <div class="w-50">
+        <div class="form-row">
+          <label for="" class="col-form-label">宝丰一店 15</label>
+          <!--
+          <span class="col-form-label">
+          test
+          </span>
+          -->
+          <input type="number" class="col-4 form-control form-control-sm" placeholder="数量">
+        </div>
+
+        <div class="form-row">
+          <label for="" class="col-form-label">宝丰一店 15</label>
+          <input type="number" class="col-4 form-control form-control-sm" placeholder="数量">
+        </div>
+
+        <div class="form-row">
+          <label for="" class="col-form-label">宝丰一店 15</label>
+          <input type="number" class="col-4 form-control form-control-sm" placeholder="数量">
+        </div>
+
+        <div class="form-row">
+          <label for="" class="col-form-label">宝丰一店 15</label>
+          <input type="number" class="col-4 form-control form-control-sm" placeholder="数量">
+        </div>
+      </div>
+
+      <div class="buyBtn text-center border-bottom">
+        <button type="button" disabled class="btn btn-primary">
+          <span class="badge badge-light">0</span>
+          clickme
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</main>
+{% endblock %}
