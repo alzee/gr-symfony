@@ -11,60 +11,35 @@
             </a>
           </div>
           <div class="input-group col">
-            <input id="search" type="text" placeholder="搜索商品编号或名称" autofocus class="form-control" aria-label="Text input with dropdown button">
+            <input id="searchInput" type="text" autofocus placeholder="搜索商品编号或名称" autofocus class="form-control">
           </div>
         </div>
         </header>
 {% endblock %}
 {% block main %}
-<main class="container">
-  <div class="px-5 rounded entity d-flex flex-column flex-md-row py-3 justify-content-between align-items-center border-bottom">
-    <div class="">111111</div>
-    <div class="">阿莫西林</div>
-    <!--
-    <div class="">20190105</div>
-    -->
-    <div class="sum">55</div>
+<main class="container" id="main">
+<div class="list-group mb-5" id="candidate">
+  <a href="#" class="list-group-item list-group-item-action d-none" id="listSample"></a>
+</div>
 
-    <div class="detail d-none align-items-center justify-content-between">
-      <div class="w-50">
-        <div class="form-row">
-          <label for="" class="col-form-label">宝丰一店 15</label>
-          <!--
-          <span class="col-form-label">
-          test
-          </span>
-          -->
-          <input type="number" class="col-4 form-control form-control-sm" placeholder="数量">
-        </div>
 
-        <div class="form-row">
-          <label for="" class="col-form-label">宝丰一店 15</label>
-          <input type="number" class="col-4 form-control form-control-sm" placeholder="数量">
-        </div>
-
-        <div class="form-row">
-          <label for="" class="col-form-label">宝丰一店 15</label>
-          <input type="number" class="col-4 form-control form-control-sm" placeholder="数量">
-        </div>
-
-        <div class="form-row">
-          <label for="" class="col-form-label">宝丰一店 15</label>
-          <input type="number" class="col-4 form-control form-control-sm" placeholder="数量">
-        </div>
-      </div>
-
-      <div class="buyBtn text-center border-bottom">
-        <button type="button" disabled class="btn btn-primary">
-          <span class="badge badge-light">0</span>
-          clickme
-        </button>
-      </div>
-
-    </div>
-  </div>
-
+<div class="d-none justify-content-between align-items-center border-bottom py-2 px-4 rounded entity" id="pushedSample">
+<div class="">
+</div>
+<div class="">
+</div>
+<div class="">
+<input id="searchInput" type="number" placeholder="发布数量" autofocus class="form-control">
+</div>
+<button type="button" class="btn btn-danger" disabled>
+发布
+</button>
+</div>
 
 
 </main>
+{% endblock %}
+
+{% block js %}
+<script src="/js/push.js"></script>
 {% endblock %}

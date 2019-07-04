@@ -4,6 +4,7 @@ namespace App\Controller\Sk;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Model\Sk\Market;
 
 class MarketController extends AbstractController
@@ -24,6 +25,18 @@ class MarketController extends AbstractController
     {
         // $rows = Market::list();
         return $this->render('sk/market/push.html.twig');
+    }
+
+    /**
+     * @Route("/sk/market/getmystock", name="getmystock")
+     */
+    public function getMyStock()
+    {
+        $sid = '017';
+        $rows = Market::getMyStock($sid);
+        $json = json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        header('Content-Type: application/json');
+        return new JsonResponse($json, 200, [], true);
     }
 
 }
