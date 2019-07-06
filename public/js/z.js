@@ -20,10 +20,12 @@
 			if (event.currentTarget !== entity[i]) {
 				entity[i].getElementsByClassName('sum')[0].classList.remove('d-none');
 				entity[i].getElementsByClassName('detail')[0].classList.remove('d-flex');
+				entity[i].classList.remove('bg-light');
 			}
 		}
 		this.getElementsByClassName('sum')[0].classList.toggle('d-none');
 		this.getElementsByClassName('detail')[0].classList.toggle('d-flex');
+		this.classList.add('bg-light');
 	}
 
 	function subTotal()
