@@ -7,7 +7,7 @@
  */
 // 1fc3vvhut7atizv2vpikf6d4yliadj
 
-$result = '';
+$result = 'qwertyuiop';
 $opw = '151514';
 $b = ["wa6j1c", "fblrk7", "mg9q0s", "vu3zth", "po4xy2", "ni5d8e"]; 
 $a = ["ke3wms", "jnx9i8", "dpqzl6", "vyg1bh", "7a4c2f", "u5rto0"]; 

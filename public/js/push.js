@@ -10,7 +10,8 @@
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			stock = xhr.response;
+			var stock = xhr.response;
+			if (typeof stock === 'string') stock = JSON.parse(stock); // IE not support responseType = 'json'
 			for (var i = 0, j = 0; i < stock.length; i++) {
 				stock[i].spmch = stock[i].spmch.trim();
 				j = listSample.cloneNode();
@@ -56,7 +57,7 @@
 		main.insertBefore(p, main.getElementsByClassName('entity')[0]);
 
 		p.firstElementChild.nextElementSibling.nextElementSibling.addEventListener('keyup', checkNum);
-		p.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.addEventListener('click', publish, );
+		p.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.addEventListener('click', publish);
 		// hide #candidate
 		candidate.classList.add('d-none');
 	}
