@@ -49,7 +49,8 @@
 	{
 		// add Element
 		var p = pushedSample.cloneNode(true);
-		p.classList.replace('d-none', 'd-flex');
+		p.classList.remove('d-none');
+		p.classList.add('d-flex');
 		p.firstElementChild.innerText = "id";
 		p.firstElementChild.nextElementSibling.innerText = "name";
 		//p.firstElementChild.nextElementSibling.nextElementSibling.innerText = "amount";
@@ -73,7 +74,8 @@
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhr.onreadystatechange = function() {
 			if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-				btn.classList.replace('btn-danger', 'btn-secondary');
+				btn.classList.remove('btn-danger');
+				btn.classList.add('btn-secondary');
 				btn.textContent = '下架';
 				btn.previousElementSibling.firstElementChild.setAttribute('disabled', '');
 				// Change EventListener

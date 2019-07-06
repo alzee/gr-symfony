@@ -2,7 +2,6 @@ public class pw {
 	public static void main(String[] args) 
 	{ 
 		StringBuilder result = new StringBuilder(); 
-		try 
 		{ 
 			String oldpassword = args[0].trim(); 
 			String[] arryb = new String[] { "wa6j1c", "fblrk7", "mg9q0s", "vu3zth", "po4xy2", "ni5d8e" }; 
@@ -40,10 +39,6 @@ public class pw {
 			{ 
 				result.append(arrya[Integer.parseInt(String.valueOf(str.charAt(n)))].charAt(Integer.parseInt(String.valueOf(str.charAt(m - n - 1))))); 
 			} 
-		} 
-		catch(Exception ex) 
-		{ 
-			System.out.print(ex.getMessage()); 
 		} 
 
 		System.out.println(result.toString());
