@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Model\Api;
 
 class ApiController extends AbstractController
 {
@@ -24,19 +25,41 @@ class ApiController extends AbstractController
     }
     
     /**
-     * @Route("/ip", name="api", host="api")
-     * @Route("/api/ip", name="api1", host="{ip}", requirements={"ip"="192.168.10.55|127.0.0.1|gr"})
+     * @Route("/ip", name="api_ip", host="api")
+     * @Route("/api/ip", name="api_ip1", host="{ip}", requirements={"ip"="192.168.10.55|127.0.0.1|gr"})
      */
     public function ip()
     {
-        $mysqli = new \Mysqli('localhost', 'root', 's', 'gr');
-        $mysqli->set_charset('utf8');
+        $rows = Api::ip();
 
-        $sql = 'select ip,label,sid,sname,zid,zname from ip';
+        $json = json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
-        $res = $mysqli->query($sql);
+        header('Content-Type: application/json');
 
-        $rows = $res->fetch_all(MYSQLI_ASSOC);
+        return new JsonResponse($json,200, [], true);
+    }
+
+    /**
+     * @Route("/posver", name="api_posver", host="api")
+     * @Route("/api/posver", name="api_posver1", host="{ip}", requirements={"ip"="192.168.10.55|127.0.0.1|gr"})
+     */
+    public function posver()
+    {
+        if (isset($_POST['ver'])) {
+            $ver = $_POST['ver'];
+        }
+        else {
+            $ver = 0;
+        }
+
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+        Api::posver($ip, $ver);
+
+        $rows = [
+            'ip' => $ip,
+            'ver' => $ver
+        ];
 
         $json = json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 

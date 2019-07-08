@@ -31,7 +31,7 @@ class Db
         return $this->mysqli->query($sql)->fetch_all(MYSQLI_ASSOC);
     }
 
-    public static function mysql($sql)
+    public static function mysql($sql, $isSelect = 1)
     {
         $host = 'localhost';
         $user = 'root';
@@ -39,7 +39,12 @@ class Db
         $db = 'gr';
         $mysqli = new \Mysqli($host, $user, $pw, $db);
         $mysqli->set_charset('utf8');
-        return $mysqli->query($sql)->fetch_all(MYSQLI_ASSOC);
+        if ($isSelect == 0) {
+            $mysqli->query($sql);
+        }
+        else {
+            return $mysqli->query($sql)->fetch_all(MYSQLI_ASSOC);
+        }
     }
 
     public static function sqlsrv($sql)
