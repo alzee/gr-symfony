@@ -24,5 +24,11 @@ class Api
         $sql = "update pc set posver = '$ver' where ip = '$ip'";
         return Db::mysql($sql, 0);
     }
+
+    static function myrcb($sid)
+    {
+        $sql = "select rcb from shop where sid = '$sid'";
+        return Db::mysql($sql);
+    }
 }
 

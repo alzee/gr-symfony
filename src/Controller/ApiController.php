@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Model\Api;
 
@@ -66,5 +67,23 @@ class ApiController extends AbstractController
         header('Content-Type: application/json');
 
         return new JsonResponse($json,200, [], true);
+    }
+    
+    /**
+     * @Route("/myrcb", name="api_myrcb", host="api")
+     * @Route("/api/myrcb", name="api_myrcb1", host="{ip}", requirements={"ip"="192.168.10.55|127.0.0.1|gr"})
+     */
+    public function myrcb()
+    {
+        if (isset($_POST['sid'])) {
+            $sid = $_POST['sid'];
+        }
+        else {
+            $sid = '001';
+        }
+        $rows = Api::myrcb($sid);
+        return new Response(
+            $rows[0]['rcb']
+        );
     }
 }
