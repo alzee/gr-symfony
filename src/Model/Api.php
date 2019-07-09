@@ -30,5 +30,11 @@ class Api
         $sql = "select rcb from shop where sid = '$sid'";
         return Db::mysql($sql);
     }
+
+    static function posstat($ip, $sid, $rcb)
+    {
+        $sql = "insert into posstat (ip, sid, rcb) values ($ip, $sid, $rcb)";
+        return Db::mysql($sql);
+    }
 }
 

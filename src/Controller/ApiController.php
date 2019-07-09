@@ -70,8 +70,8 @@ class ApiController extends AbstractController
     }
     
     /**
-     * @Route("/myrcb", name="api_myrcb", host="api")
-     * @Route("/api/myrcb", name="api_myrcb1", host="{ip}", requirements={"ip"="192.168.10.55|127.0.0.1|gr"})
+     * @Route("/rcb", name="api_rcb", host="api", methods={"GET"})
+     * @Route("/api/rcb", name="api_rcb1", host="{ip}", methods={"GET"}, requirements={"ip"="192.168.10.55|127.0.0.1|gr"})
      */
     public function myrcb()
     {
@@ -85,5 +85,13 @@ class ApiController extends AbstractController
         return new Response(
             $rows[0]['rcb']
         );
+    }
+    
+    /**
+     * @Route("/posstat", name="api_posstat", host="api")
+     * @Route("/api/posstat", name="api_posstat", host="{ip}", requirements={"ip"="192.168.10.55|127.0.0.1|gr"})
+     */
+    public function posstat()
+    {
     }
 }
