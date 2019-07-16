@@ -94,4 +94,33 @@ class ApiController extends AbstractController
     public function posstat()
     {
     }
+    
+    /**
+     * @Route("/pyver", name="api_pyver", host="api", methods={"POST"})
+     * @Route("/api/pyver", name="api_pyver1", host="{ip}", methods={"POST"}, requirements={"ip"="192.168.10.55|127.0.0.1|gr"})
+     */
+    public function putPyver()
+    {
+        if (isset($_POST['pyver'])) {
+            $pyver = $_POST['pyver'];
+        }
+        else {
+            $pyver = 0;
+        }
+
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+        Api::putPyver($ip, $pyver);
+
+        $rows = [
+            'ip' => $ip,
+            'pyver' => $pyver
+        ];
+
+        $json = json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+        header('Content-Type: application/json');
+
+        return new JsonResponse($json,200, [], true);
+    }
 }

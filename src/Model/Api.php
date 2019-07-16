@@ -36,5 +36,11 @@ class Api
         $sql = "insert into posstat (ip, sid, rcb) values ($ip, $sid, $rcb)";
         return Db::mysql($sql);
     }
+
+    static function putPyver($ip, $pyver)
+    {
+        $sql = "update pc set pyver = '$pyver' where ip = '$ip'";
+        return Db::mysql($sql, 0);
+    }
 }
 
