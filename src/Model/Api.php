@@ -19,9 +19,9 @@ class Api
         return Db::mysql($sql);
     }
 
-    static function posver($ip, $ver)
+    static function posver($ip, $posver)
     {
-        $sql = "update pc set posver = '$ver' where ip = '$ip'";
+        $sql = "update pc set posver = '$posver' where ip = '$ip'";
         return Db::mysql($sql, 0);
     }
 
@@ -31,15 +31,15 @@ class Api
         return Db::mysql($sql);
     }
 
-    static function posstat($ip, $sid, $rcb)
-    {
-        $sql = "insert into posstat (ip, sid, rcb) values ($ip, $sid, $rcb)";
-        return Db::mysql($sql);
-    }
-
     static function putPyver($ip, $pyver)
     {
         $sql = "update pc set pyver = '$pyver' where ip = '$ip'";
+        return Db::mysql($sql, 0);
+    }
+
+    static function ver($ip, $posver, $winver, $pyver)
+    {
+        $sql = "update pc set posver = '$posver', winver = '$winver', pyver = '$pyver' where ip = '$ip'";
         return Db::mysql($sql, 0);
     }
 }

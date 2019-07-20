@@ -46,20 +46,20 @@ class ApiController extends AbstractController
      */
     public function posver()
     {
-        if (isset($_POST['ver'])) {
-            $ver = $_POST['ver'];
+        if (isset($_POST['posver'])) {
+            $posver = $_POST['posver'];
         }
         else {
-            $ver = 0;
+            $posver = 0;
         }
 
         $ip = $_SERVER['REMOTE_ADDR'];
 
-        Api::posver($ip, $ver);
+        Api::posver($ip, $posver);
 
         $rows = [
             'ip' => $ip,
-            'ver' => $ver
+            'posver' => $posver
         ];
 
         $json = json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
@@ -88,14 +88,6 @@ class ApiController extends AbstractController
     }
     
     /**
-     * @Route("/posstat", name="api_posstat", host="api")
-     * @Route("/api/posstat", name="api_posstat", host="{ip}", requirements={"ip"="192.168.10.55|127.0.0.1|gr"})
-     */
-    public function posstat()
-    {
-    }
-    
-    /**
      * @Route("/pyver", name="api_pyver", host="api", methods={"POST"})
      * @Route("/api/pyver", name="api_pyver1", host="{ip}", methods={"POST"}, requirements={"ip"="192.168.10.55|127.0.0.1|gr"})
      */
@@ -114,6 +106,34 @@ class ApiController extends AbstractController
 
         $rows = [
             'ip' => $ip,
+            'pyver' => $pyver
+        ];
+
+        $json = json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+        header('Content-Type: application/json');
+
+        return new JsonResponse($json,200, [], true);
+    }
+    
+    /**
+     * @Route("/ver", name="api_ver", host="api", methods={"POST", "GET"})
+     * @Route("/api/ver", name="api_ver1", host="{ip}", methods={"POST", "GET"}, requirements={"ip"="192.168.10.55|127.0.0.1|gr"})
+     */
+    public function ver()
+    {
+        $posver = isset($_POST['posver']) ? $_POST['posver'] : 0;
+        $winver = isset($_POST['winver']) ? $_POST['winver'] : 0;
+        $pyver = isset($_POST['pyver']) ? $_POST['pyver'] : 0;
+
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+        Api::ver($ip, $posver, $winver, $pyver);
+
+        $rows = [
+            'ip' => $ip,
+            'posver' => $posver,
+            'winver' => $winver,
             'pyver' => $pyver
         ];
 
