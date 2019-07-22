@@ -14,7 +14,7 @@ class Ip
 {
     static function list()
     {
-        $sql = 'select ip,label,sid,sname,zid,zname from ip';
+        $sql = 'select ip,label,sid,sname,rcb,zid,zname from ip';
         return Db::mysql($sql);
     }
 }

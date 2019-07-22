@@ -25,9 +25,9 @@ class Api
         return Db::mysql($sql, 0);
     }
 
-    static function myrcb($sid)
+    static function myrcb($ip)
     {
-        $sql = "select rcb from shop where sid = '$sid'";
+        $sql = "select rcb from pc where ip = '$ip'";
         return Db::mysql($sql);
     }
 

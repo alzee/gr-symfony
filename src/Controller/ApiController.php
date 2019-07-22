@@ -75,13 +75,10 @@ class ApiController extends AbstractController
      */
     public function myrcb()
     {
-        if (isset($_POST['sid'])) {
-            $sid = $_POST['sid'];
-        }
-        else {
-            $sid = '001';
-        }
-        $rows = Api::myrcb($sid);
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+        $rows = Api::myrcb($ip);
+        if (empty($rows)) $rows[0]['rcb'] = 0;
         return new Response(
             $rows[0]['rcb']
         );
