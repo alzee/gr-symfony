@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}lease{% endblock %}
+{% block header_middle %}
+<div class="col-auto">
+<button type="button" class="btn btn-danger">新增</button>
+</div>
+{% endblock %}
+
+{% block main %}
+<main class="container">
+<table class="table table-hover">
+<thead class="thead-light">
+<tr>
+<th scope="col">合同编号</th>
+<th scope="col">合同名称</th>
+<th scope="col">合同签订人</th>
+<th scope="col">联系信息</th>
+<th scope="col">门店名称</th>
+</tr>
+</thead>
+<tbody id="tbody">
+{% for i in rows %}
+<tr class="lease_tr">
+<th class="">{{ i.id}}</td>
+<td class="">{{ i.lname}}</td>
+<td class="">{{ i.signedby}}</td>
+<td class="">{{ i.contact }}</td>
+<td class="">{{ i.sname }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</main>
+{% endblock %}
+
+{% block js1 %}
+	<script src="/js/lease.js"></script>
+{% endblock %}

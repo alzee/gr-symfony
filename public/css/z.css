@@ -19,3 +19,7 @@ td {
 }
 .detail input {
 }
+
+.lease_tr {
+  cursor: pointer;
+}

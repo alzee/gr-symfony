@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {% endblock %}
+
+{% block header_left %}
+{% endblock %}
+{% block header_right %}
+{% endblock %}
+
+{% block main %}
+<main class="container" id="">
+{% for i in cols %}
+  <div class="">
+    <label for="{{ i.Field }}" class=""> {{ i.Comment }} </label>
+    <div class="">
+      <input id="{{ i.Field }}" placeholder="{{ row[i.Field] }}" type="text" class="form-control" disabled="">
+    </div>
+  </div>
+{% endfor %}
+<div class="">
+<button type="button" class="btn btn-danger">
+保存
+</button>
+</div>
+</main>
+{% endblock %}
+
+{% block js1 %}
+	<script src="/js/lease.js"></script>
+{% endblock %}
