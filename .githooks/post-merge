@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# vim:ft=sh
+
+echo Importing gr.sql ...
+mysql -uroot -ps gr < sql/gr.sql
