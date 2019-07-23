@@ -18,7 +18,7 @@ class LeaseController extends AbstractController
     }
 
     /**
-     * @Route("/oa/lease/{id}", name="lease_detail")
+     * @Route("/oa/lease/{id}", name="lease_detail", requirements={"id"="\d+"})
      */
     public function detail($id = 2)
     {
@@ -31,4 +31,22 @@ class LeaseController extends AbstractController
         return $this->render('oa/lease_detail.html.twig', $all);
     }
 
+    /**
+     * @Route("/oa/lease/new", name="lease_new", methods={"GET"})
+     */
+    public function new($id = 2)
+    {
+        $cols = Lease::desc();
+        return $this->render('oa/lease_new.html.twig', ['cols' => $cols]);
+    }
+
+    /**
+     * @Route("/oa/lease/new", name="lease_new_post", methods={"POST"})
+     */
+    public function save()
+    {
+        $cols = Lease::desc();
+        Lease::save($_POST);
+        return $this->render('oa/lease_new.html.twig', ['cols' => $cols]);
+    }
 }

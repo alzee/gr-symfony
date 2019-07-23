@@ -29,5 +29,20 @@ class Lease
         $sql = "show full columns from lease";
         return Db::mysql($sql);
     }
+
+    static function save($raw)
+    {
+        $fields = '';
+        $values = '';
+        foreach ($raw as $k => $v) {
+            $fields .= $k . ',';
+            $values .= ($v == '' ? 'null,' : "'$v',");
+        }
+        $fields = rtrim($fields, ',');
+        $values = rtrim($values, ',');
+        $sql = "insert into lease ($fields) values ($values)";
+        // print_r($sql);
+        Db::mysql($sql, 0);
+    }
 }
 
