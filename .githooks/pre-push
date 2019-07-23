@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+# vim:ft=sh
+
+mysqldump -R --skip-extended-insert -uroot -ps gr > sql/gr.sql
+
+git add -A
