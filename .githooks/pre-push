@@ -6,3 +6,4 @@ echo Dumping gr.sql ...
 mysqldump -R --skip-extended-insert -uroot -ps gr > sql/gr.sql
 
 git add -A
+git commit -m 'mysqldump'
