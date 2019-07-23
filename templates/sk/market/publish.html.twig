@@ -2,9 +2,7 @@
 
 {% block title %}shop{% endblock %}
 
-{% block header %}
-        <header class="container">
-        <div class="row pt-4 pb-2">
+{% block header_left %}
           <div class="col-auto">
             <a class="btn btn-danger" href="{{ path('market') }}" role="button">
             <i class="fas fa-arrow-left"></i> 返回市场 
@@ -13,8 +11,8 @@
           <div class="input-group col">
             <input id="searchInput" type="text" autofocus placeholder="搜索商品编号或名称" autofocus class="form-control">
           </div>
-        </div>
-        </header>
+{% endblock %}
+{% block header_right %}
 {% endblock %}
 {% block main %}
 <main class="container" id="main">
