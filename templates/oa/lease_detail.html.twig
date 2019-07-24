@@ -8,21 +8,26 @@
             <i class="fas fa-arrow-left"></i> 返回 
             </a>
           </div>
+<input type="submit" form="lease_detail" class="btn btn-danger" value="保存">
 </div>
 {% endblock %}
 {% block header_right %}
 {% endblock %}
 
 {% block main %}
-<main class="container" id="lease_detail">
+<main class="container" id="">
+<form id="lease_detail" action="" method="POST">
 {% for i in cols %}
+{% if i.Field != 'id' %}
   <div class="">
     <label for="{{ i.Field }}" class=""> {{ i.Comment }} </label>
     <div class="input">
-      <input id="{{ i.Field }}" placeholder="{{ row[i.Field] }}" type="text" class="form-control" disabled="">
+      <input id="{{ i.Field }}" name="{{ i.Field }}" placeholder="{{ row[i.Field] }}" type="text" class="form-control" disabled="">
     </div>
   </div>
+{% endif %}
 {% endfor %}
+</form>
 </main>
 {% endblock %}
 

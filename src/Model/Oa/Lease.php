@@ -44,5 +44,17 @@ class Lease
         // print_r($sql);
         Db::mysql($sql, 0);
     }
+
+    static function modify($id, $raw)
+    {
+        $sets = '';
+        foreach ($raw as $k => $v) {
+            $sets .= "$k = '$v',";
+        }
+        $sets = rtrim($sets, ',');
+        $sql = "update lease set $sets where id = $id";
+        print_r($sql);
+        Db::mysql($sql, 0);
+    }
 }
 
