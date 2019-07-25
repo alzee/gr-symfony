@@ -11,10 +11,10 @@ namespace App;
 class Db
 {
     private $mysqli;
-    private $host = 'localhost';
-    private $user = 'root';
-    private $pw = 's';
-    private $db = 'gr';
+    private $host;
+    private $user;
+    private $pw;
+    private $db;
     
     public function __construct()
     {
@@ -33,10 +33,10 @@ class Db
 
     public static function mysql($sql, $isSelect = 1)
     {
-        $host = 'localhost';
-        $user = 'root';
-        $pw = 's';
-        $db = 'gr';
+        $host = $_ENV['dbsrv'];
+        $user = $_ENV['dbuser'];
+        $pw = $_ENV['dbpw'];
+        $db = $_ENV['dbname'];
         $mysqli = new \Mysqli($host, $user, $pw, $db);
         $mysqli->set_charset('utf8');
         if ($isSelect == 0) {
