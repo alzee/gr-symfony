@@ -22,7 +22,7 @@
   <div class="">
     <label for="{{ i.Field }}" class=""> {{ i.Comment }} </label>
     <div class="input">
-      <input id="{{ i.Field }}" name="{{ i.Field }}" placeholder="{{ row[i.Field] }}" type="text" class="form-control" disabled="">
+      <input id="{{ i.Field }}" name="{{ i.Field }}" value="{{ row[i.Field] }}" placeholder="{{ row[i.Field] }}" type="text" class="form-control" disabled="">
     </div>
   </div>
 {% endif %}
