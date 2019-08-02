@@ -1,0 +1,513 @@
+﻿<!DOCTYPE html>
+<!-- 主体布局架构 -->
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- css文件 -->
+    <link href="../css/root.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #edf0f5;
+        }
+    </style>
+
+    <!-- js文件 -->
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+<body>
+    <!-- 页面加载 -->
+    <div class="loading"><img src="../img/loading.gif" alt="加载中"></div>
+
+    <!-- 顶层 -->
+    <div id="top" class="clearfix">
+
+        <div class="applogo">
+            <a class="logo">菜单</a>
+        </div>
+
+        <!-- 隐藏显示菜单图标 -->
+        <a href="#" class="sidebar-open-button"><i class="fa fa-bars"></i></a>
+        <a href="#" class="sidebar-open-button-mobile"><i class="fa fa-bars"></i></a>
+
+        <!-- 页面标题 -->
+        <h1 class="title">自助售药机后台管理系统</h1>
+
+    </div>
+
+    <!-- 左侧栏 -->
+    <div class="sidebar clearfix">
+
+        <!-- 用户信息 -->
+        <div class="dropdown link">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle profilebox">
+                <img src="../img/profileimg.png" alt="img">
+                <div class="user-name"><b id="userInfo"></b><span class="caret"></span></div>
+            </a>
+            <script>
+                // 设置当前用户信息
+                $("#userInfo").text(user.realname + "(" + user.username + ")");
+            </script>
+            <ul class="dropdown-menu dropdown-menu-list dropdown-menu-right">
+                <li role="presentation" class="dropdown-header">选项</li>
+                <li><a href="login.html"><i class="fa falist fa-power-off"></i> 退出</a></li>
+            </ul>
+        </div>
+
+        <!-- 菜单 -->
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">机器管理</li>
+            <li><a href="runStatus.html"><span class="icon color5"><i class="fa fa-home"></i></span>运行状态</a></li>
+            <li>
+                <a href="#"><span class="icon color7"><i class="fa fa-laptop"></i></span>药机管理<span class="caret"></span></a>
+                <ul>
+                    <li><a href="machineGroup.html">机器分组</a></li>
+                    <li><a href="motorInfo.html">货道设置</a></li>
+                    <li><a href="machineInfo.html">机器信息设置</a></li>
+                    <li><a href="maintain.html">机器维护</a></li>
+                </ul>
+            </li>
+            <li><a href="wsdChart.html"><span class="icon color6"><i class="fa fa-bar-chart"></i></span>温湿度详情</a></li>
+            <li><a href="warningStatus.html"><span class="icon color6"><i class="fa fa-bar-chart"></i></span>警报详情</a></li>
+        </ul>
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">药品管理</li>
+            <li><a href="categoryInfo.html"><span class="icon color5"><i class="fa fa-folder"></i></span>分类管理</a></li>
+            <li><a href="drugInfo.html"><span class="icon color6"><i class="fa fa-calendar"></i></span>药品列表</a></li>
+            <li style="display:none"><a href="#"><span class="icon color7"><i class="fa fa-sort-amount-asc"></i></span>期效管理<span class="caret"></span></a></li>
+            <li><a href="lotNumber.html"><span class="icon color6"><i class="fa fa-file-word-o"></i></span>批号管理</a></li>
+            <li><a href="situation.html"><span class="icon color5"><i class="fa fa-folder"></i></span>病情管理</a></li>
+
+        </ul>
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">记录管理</li>
+            <li><a href="saleRecord.html"><span class="icon color5"><i class="fa fa-calendar-o"></i></span>销售记录</a></li>
+            <li style="display:none"> <a href=""><span class="icon color6"><i class="fa fa-calendar"></i></span>操作记录</a>
+            <li>
+                <a href="#"><span class="icon color7"><i class="fa fa-calendar-o"></i></span>药品记录<span class="caret"></span></a>
+                <ul>
+                    <li><a href="addDrugInfo.html">上药记录</a></li>
+                    <li><a href="subDrugInfo.html">撤药记录</a></li>
+                </ul>
+            </li>
+            <li><a href="" style="display:none"><span class="icon color6"><i class="fa fa-calendar"></i></span>报警记录</a></li>
+        </ul>
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">用户管理</li>
+            <li><a href="userInfo.html"><span class="icon color5"><i class="fa fa-user"></i></span>用户信息</a></li>
+        </ul>
+        <ul class="sidebar-panel nav" style="display:none">
+            <li class="sidetitle">财务管理</li>
+            <li><a href="blank1.html"><span class="icon color5"><i class="fa fa-calendar-o"></i></span>销售统计</a></li>
+        </ul>
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">其他设置</li>
+            <li><a href="sysSetting.html"><span class="icon color12"><i class="fa fa-cog"></i></span>系统设置</a></li>
+        </ul>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="content">
+
+        <!-- 当前页面的菜单位置 -->
+        <div class="page-header">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>机器管理</li>
+                <li>温湿度详情</li>
+            </ol>
+        </div>
+
+        <!-- 内容 -->
+        <div class="container-padding container-widget" id="content">
+
+            <!-- 搜索条件 -->
+            <div class="row">
+
+                <div class="col-md-12 col-lg-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-title" style="font-size:15px">搜索条件</div>
+                        <div class="panel-body">
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <label for="machine_group_id" class="form-label control-label">机器分组：</label>
+                                    <select class="selectpicker" data-live-search="true" id="machine_group_id"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="machine_name" class="control-label form-label">机器名称：</label>
+                                    <select class="selectpicker" data-live-search="true" id="machine_name"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="machine_id" class="form-label control-label">机器ID：</label>
+                                    <select class="selectpicker" data-live-search="true" id="machine_id"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="startTime" class="form-label control-label">起始日期：</label>
+                                    <i class="fa fa-calendar"></i>
+                                    <input id="startTime" class="form-control" type="date">
+                                </div>
+                                <div class="form-group">
+                                    <label for="endTime" class="form-label control-label">终止日期：</label>
+                                    <i class="fa fa-calendar"></i>
+                                    <input id="endTime" class="form-control" type="date">
+                                </div>
+                                <div class="form-group">
+                                    <a id="search" class="btn btn-rounded btn-default" onclick="mySearch()">查  询</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- 温湿度图表 -->
+            <div class="row">
+
+                <div class="col-md-12 col-lg-12">
+
+                    <div class="panel panel-default">
+
+                        <div class="panel-title">机柜1温度</div>
+
+                        <div class="panel-body">
+                            <div class="flotchart-container" id="c1wdparent">
+                                <div id="c1temperature" class="flotchart-placeholder"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-12 col-lg-12">
+
+                    <div class="panel panel-default">
+
+                        <div class="panel-title">机柜1湿度</div>
+
+                        <div class="panel-body">
+                            <div class="flotchart-container">
+                                <div id="c1humidity" class="flotchart-placeholder"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-12 col-lg-12">
+
+                    <div class="panel panel-default">
+
+                        <div class="panel-title">机柜2温度</div>
+
+                        <div class="panel-body">
+                            <div class="flotchart-container">
+                                <div id="c2temperature" class="flotchart-placeholder"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-12 col-lg-12">
+
+                    <div class="panel panel-default">
+
+                        <div class="panel-title">机柜2湿度</div>
+
+                        <div class="panel-body">
+                            <div class="flotchart-container">
+                                <div id="c2humidity" class="flotchart-placeholder"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- 底部信息 -->
+    <div class="row footer" style="display:none">
+        <div class="col-md-6 text-left">
+            Copyright &copy; 2018.Company name All rights reserved.<a href="#">沈阳华天基曼龙有限公司</a>
+        </div>
+        <div class="col-md-6 text-right"></div>
+    </div>
+
+    <!-- 错误提示 -->
+    <div id="alerttop" class="Modern-alert Modern-alert-icon Modern-alert-click alert6 Modern-alert-top"></div>
+    <!-- 成功提示 -->
+    <div id="successtop" class="Modern-alert Modern-alert-icon Modern-alert-click alert3 Modern-alert-top"></div>
+
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/datatables/datatables.min.js"></script> <!-- Data Tables -->
+    <script src="../js/bootstrap-select/bootstrap-select.js"></script> <!-- Bootstrap Select -->
+    <script src="../js/bootstrap-toggle/bootstrap-toggle.min.js"></script> <!-- Bootstrap Toggle -->
+    <!--<script src="../js/moment/moment.min.js"></script>--> <!-- Moment.js -->
+    <!--<script src="../js/date-range-picker/daterangepicker.js"></script>--> <!-- Bootstrap Date Range Picker -->
+    <script src="../js/sweet-alert/sweet-alert.min.js"></script> <!-- Sweet Alert -->
+    <script src="../js/Modern-alert/main.js"></script><!-- Modern Alert -->
+    <!-- Flot Chart -->
+    <script src="../js/flot-chart/flot-chart.js"></script><
+    <script src="../js/flot-chart/flot-chart-time.js"></script>
+    <script src="../js/flot-chart/flot-chart-stack.js"></script>
+    <script src="../js/flot-chart/flot-chart-pie.js"></script>
+    <!-- Chartist -->
+    <script src="../js/chartist/chartist.js"></script>
+    <!-- Easy Pie Chart -->
+    <script src="../js/easypiechart/easypiechart.js"></script>
+    <!-- Sparkline -->
+    <script src="../js/sparkline/sparkline.js"></script>
+    <!-- Rickshaw -->
+    <script src="../js/rickshaw/d3.v3.js"></script>
+    <script src="../js/rickshaw/rickshaw.js"></script>
+
+
+
+    <script>
+      
+        // 更改机器分组选项时，刷新机器名称和机器ID下拉框
+        $("#machine_group_id").change(function () {
+            machineIdNameSelecter($(this).val());
+        });
+        // 添加机器分组下拉列表项
+        var machineGroupObj = JSON.parse(commonBind.MachineGroupJson());
+        var machine_group_name = "<option value='0'>全部</option>"
+        for (var gindex = 0; gindex < machineGroupObj.length; gindex++) {
+            machine_group_name += "<option value='" + machineGroupObj[gindex].id + "'>" + machineGroupObj[gindex].machine_group_name + "</option>"
+        }
+        $("#machine_group_id").append(machine_group_name);
+        $('#machine_group_id').selectpicker('refresh');
+        $('#machine_group_id').selectpicker('render');
+
+        // 机器名称和机器ID下拉框联动
+        $("#machine_id").change(function () {
+            $("#machine_name").selectpicker('val', $(this).val())
+        });
+        $("#machine_name").change(function () {
+            $("#machine_id").selectpicker('val', $(this).val())
+        });
+
+        // 添加机器名称下拉列表和机器ID下拉列表
+        function machineIdNameSelecter(machineGourpId) {
+            $("#machine_name").empty();
+            $("#machine_id").empty();
+            var m_selecter_obj = JSON.parse(commonBind.MachineSelecterJson(machineGourpId));
+            var machineName = "<option value='0'>全部</option>"
+            var machineId = "<option value='0'>全部</option>"
+            for (var mindex = 0; mindex < m_selecter_obj.length; mindex++) {
+                machineName += "<option value='" + m_selecter_obj[mindex].id + "'>" + m_selecter_obj[mindex].machine_name + "</option>";
+                machineId += "<option value='" + m_selecter_obj[mindex].id + "'>" + m_selecter_obj[mindex].machine_id + "</option>";
+            }
+            $("#machine_name").append(machineName);
+            $("#machine_id").append(machineId);
+            $('#machine_name').selectpicker('refresh');
+            $('#machine_name').selectpicker('render');
+            $('#machine_id').selectpicker('refresh');
+            $('#machine_id').selectpicker('render');
+        }
+        machineIdNameSelecter('0');
+
+        var timeout = null;
+        var wd1 = null;
+        var wd2 = null;
+        var sd1 = null;
+        var sd2 = null;
+
+
+        $("<div id='tooltip'></div>").css({
+            position: "absolute",
+            display: "none",
+            border: "1px solid #fdd",
+            padding: "2px",
+            "background-color": "#fee",
+            opacity: 0.80
+        }).appendTo("body");
+       
+        $("#c1temperature").bind("plothover", function (event, pos, item) {
+            if (item) {
+                //var x = item.datapoint[0].toFixed(2);
+                var y = item.datapoint[1].toFixed(2);
+
+                $("#tooltip").html(item.series.label + ":"+ y + "℃")
+                    .css({ top: item.pageY + 5, left: item.pageX + 5 })
+                    .fadeIn(200);
+            } else {
+                $("#tooltip").hide();
+            }
+        });
+        $("#c2temperature").bind("plothover", function (event, pos, item) {
+            if (item) {
+                //var x = item.datapoint[0].toFixed(2);
+                var y = item.datapoint[1].toFixed(2);
+
+                $("#tooltip").html(item.series.label + ":" + y + "%")
+                    .css({ top: item.pageY + 5, left: item.pageX + 5 })
+                    .fadeIn(200);
+            } else {
+                $("#tooltip").hide();
+            }
+        });
+        $("#c1humidity").bind("plothover", function (event, pos, item) {
+            if (item) {
+                //var x = item.datapoint[0].toFixed(2);
+                var y = item.datapoint[1].toFixed(2);
+
+                $("#tooltip").html(item.series.label + ":" + y + "%")
+                    .css({ top: item.pageY + 5, left: item.pageX + 5 })
+                    .fadeIn(200);
+            } else {
+                $("#tooltip").hide();
+            }
+        });
+        $("#c2humidity").bind("plothover", function (event, pos, item) {
+            if (item) {
+                //var x = item.datapoint[0].toFixed(2);
+                var y = item.datapoint[1].toFixed(2);
+
+                $("#tooltip").html(item.series.label + ":" + y + "%")
+                    .css({ top: item.pageY + 5, left: item.pageX + 5 })
+                    .fadeIn(200);
+            } else {
+                $("#tooltip").hide();
+            }
+        });
+
+
+
+
+        // 查询
+        function mySearch() {
+            if ($("#machine_name").val() == '0') {
+                $("#alerttop").text('请选择机器');
+                $("#successtop").fadeOut(1);
+                $("#alerttop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                return;
+            }
+            if ($("#startTime").val() == '' || $("#endTime").val() == '') {
+                $("#alerttop").text('请选择日期');
+                $("#successtop").fadeOut(1);
+                $("#alerttop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                return;
+            }
+
+            var options = {
+                lines: {
+                    show: true
+                },
+                points: {
+                    show: true
+                },
+                xaxis: {
+                    mode: "time",
+                    timeformat: "%Y-%m-%d %H:%M:%S"
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: true
+                }
+            };
+
+            var machineid = $("#machine_name").val();
+            var startTime = $("#startTime").val();
+            var endTime = $("#endTime").val();
+            $.ajax({
+                "cache": false,
+                "type": "POST",
+                "dataType": "JSON",
+                "url": "http://127.0.0.1:8081/wsdChart1",
+                "data": { "machineid": machineid + "", "startTime": startTime + "", "endTime": endTime + "", "type": "1" },
+                "success": function (datat) {
+                    var data = [];
+                    data.push(datat);
+                    if (wd1 == null) {
+                        wd1 = $.plot("#c1temperature", data, options);
+                    } else {
+                        wd1.setData(data); // 重新设置数据
+                        wd1.setupGrid();
+                        wd1.draw(); // 重绘
+                    }
+                }
+            });
+            $.ajax({
+                "cache": false,
+                "type": "POST",
+                "dataType": "JSON",
+                "url": "http://127.0.0.1:8081/wsdChart1",
+                "data": { "machineid": machineid + "", "startTime": startTime + "", "endTime": endTime + "", "type": "2" },
+                "success": function (datat) {
+                    var data = [];
+                    data.push(datat);
+                    if (sd1 == null) {
+                        sd1 = $.plot("#c1humidity", data, options);
+                    } else {
+                        sd1.setData(data); // 重新设置数据
+                        sd1.setupGrid();
+                        sd1.draw(); // 重绘
+                    }
+                }
+            });
+            $.ajax({
+                "cache": false,
+                "type": "POST",
+                "dataType": "JSON",
+                "url": "http://127.0.0.1:8081/wsdChart1",
+                "data": { "machineid": machineid + "", "startTime": startTime + "", "endTime": endTime + "", "type": "3" },
+                "success": function (datat) {
+                    var data = [];
+                    data.push(datat);
+                    if (wd2 == null) {
+                        wd2 = $.plot("#c2temperature", data, options);
+                    } else {
+                        wd2.setData(data); // 重新设置数据
+                        wd2.setupGrid();
+                        wd2.draw(); // 重绘
+                    }
+                }
+            });
+            $.ajax({
+                "cache": false,
+                "type": "POST",
+                "dataType": "JSON",
+                "url": "http://127.0.0.1:8081/wsdChart1",
+                "data": { "machineid": machineid + "", "startTime": startTime + "", "endTime": endTime + "", "type": "4" },
+                "success": function (datat) {
+                    var data = [];
+                    data.push(datat);
+                    if (sd2 == null) {
+                        sd2 = $.plot("#c2humidity", data, options);
+                    } else {
+                        sd2.setData(data); // 重新设置数据
+                        sd2.setupGrid();
+                        sd2.draw(); // 重绘
+                    }
+                }
+            });
+        }
+    </script>
+
+
+
+</body>
+</html>

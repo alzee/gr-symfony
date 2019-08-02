@@ -1,0 +1,913 @@
+﻿<!DOCTYPE html>
+<!-- 主体布局架构 -->
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- css文件 -->
+    <link href="../css/root.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #edf0f5;
+        }
+    </style>
+
+    <!-- js文件 -->
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+<body>
+    <!-- 页面加载 -->
+    <div class="loading"><img src="../img/loading.gif" alt="加载中"></div>
+
+    <!-- 顶层 -->
+    <div id="top" class="clearfix">
+
+        <div class="applogo">
+            <a class="logo">菜单</a>
+        </div>
+
+        <!-- 隐藏显示菜单图标 -->
+        <a href="#" class="sidebar-open-button"><i class="fa fa-bars"></i></a>
+        <a href="#" class="sidebar-open-button-mobile"><i class="fa fa-bars"></i></a>
+
+        <!-- 页面标题 -->
+        <h1 class="title">自助售药机后台管理系统</h1>
+
+    </div>
+
+    <!-- 左侧栏 -->
+    <div class="sidebar clearfix">
+
+        <!-- 用户信息 -->
+        <div class="dropdown link">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle profilebox">
+                <img src="../img/profileimg.png" alt="img">
+                <div class="user-name"><b id="userInfo"></b><span class="caret"></span></div>
+            </a>
+            <script>
+                // 设置当前用户信息
+                $("#userInfo").text(user.realname + "(" + user.username + ")");
+            </script>
+            <ul class="dropdown-menu dropdown-menu-list dropdown-menu-right">
+                <li role="presentation" class="dropdown-header">选项</li>
+                <li><a href="login.html"><i class="fa falist fa-power-off"></i> 退出</a></li>
+            </ul>
+        </div>
+
+        <!-- 菜单 -->
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">机器管理</li>
+            <li><a href="runStatus.html"><span class="icon color5"><i class="fa fa-home"></i></span>运行状态</a></li>
+            <li>
+                <a href="#"><span class="icon color7"><i class="fa fa-laptop"></i></span>药机管理<span class="caret"></span></a>
+                <ul>
+                    <li><a href="machineGroup.html">机器分组</a></li>
+                    <li><a href="motorInfo.html">货道设置</a></li>
+                    <li><a href="machineInfo.html">机器信息设置</a></li>
+                    <li><a href="maintain.html">机器维护</a></li>
+                </ul>
+            </li>
+            <li><a href="wsdChart.html"><span class="icon color6"><i class="fa fa-bar-chart"></i></span>温湿度详情</a></li>
+            <li><a href="warningStatus.html"><span class="icon color6"><i class="fa fa-bar-chart"></i></span>警报详情</a></li>
+        </ul>
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">药品管理</li>
+            <li><a href="categoryInfo.html"><span class="icon color5"><i class="fa fa-folder"></i></span>分类管理</a></li>
+            <li><a href="drugInfo.html"><span class="icon color6"><i class="fa fa-calendar"></i></span>药品列表</a></li>
+            <li style="display:none"><a href="#"><span class="icon color7"><i class="fa fa-sort-amount-asc"></i></span>期效管理<span class="caret"></span></a></li>
+            <li><a href="lotNumber.html"><span class="icon color6"><i class="fa fa-file-word-o"></i></span>批号管理</a></li>
+            <li><a href="situation.html"><span class="icon color5"><i class="fa fa-folder"></i></span>病情管理</a></li>
+
+        </ul>
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">记录管理</li>
+            <li><a href="saleRecord.html"><span class="icon color5"><i class="fa fa-calendar-o"></i></span>销售记录</a></li>
+            <li style="display:none"> <a href=""><span class="icon color6"><i class="fa fa-calendar"></i></span>操作记录</a>
+            <li>
+                <a href="#"><span class="icon color7"><i class="fa fa-calendar-o"></i></span>药品记录<span class="caret"></span></a>
+                <ul>
+                    <li><a href="addDrugInfo.html">上药记录</a></li>
+                    <li><a href="subDrugInfo.html">撤药记录</a></li>
+                </ul>
+            </li>
+            <li><a href="" style="display:none"><span class="icon color6"><i class="fa fa-calendar"></i></span>报警记录</a></li>
+        </ul>
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">用户管理</li>
+            <li><a href="userInfo.html"><span class="icon color5"><i class="fa fa-user"></i></span>用户信息</a></li>
+        </ul>
+        <ul class="sidebar-panel nav" style="display:none">
+            <li class="sidetitle">财务管理</li>
+            <li><a href="blank1.html"><span class="icon color5"><i class="fa fa-calendar-o"></i></span>销售统计</a></li>
+        </ul>
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">其他设置</li>
+            <li><a href="sysSetting.html"><span class="icon color12"><i class="fa fa-cog"></i></span>系统设置</a></li>
+        </ul>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="content">
+
+        <!-- 当前页面的菜单位置 -->
+        <div class="page-header">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>机器管理</li>
+                <li>药机管理</li>
+                <li>货道设置</li>
+            </ol>
+        </div>
+
+        <!-- 内容 -->
+        <div class="container-padding container-widget" id="content">
+
+            <!-- 搜索条件 -->
+            <div class="row">
+
+                <div class="col-md-12 col-lg-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-title" style="font-size:15px">搜索条件</div>
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+                                <div class="col-lg-1 col-md-1 text-right">
+                                    <label for="machine_group_id" class="form-label control-label">机器分组：</label>
+                                </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <select class="selectpicker" data-live-search="true" id="machine_group_id"></select>
+                                </div>
+                                <div class="col-lg-1 col-md-1 text-right">
+                                    <label for="machine_name" class="control-label form-label">机器名称：</label>
+                                </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <select class="selectpicker" data-live-search="true" id="machine_name"></select>
+                                </div>
+                                <div class="col-lg-6 col-md-6 ">
+                                    <a id="search" class="btn btn-rounded btn-default" onclick="mySearch()">查  询</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a id="search" class="btn btn-rounded btn-default" data-toggle='modal' data-target='#alterDis' onclick="$('#cate').selectpicker('val', '0'); $('#cate').change(); $('#alterDiscount').val('1'); if ($('#machine_name').val() != '0') { $('#disMName').val($('#machine_name').find('option:selected').text()) } else { $('#disMName').val('') }">统一折扣</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- 表格 -->
+            <div class="row">
+
+                <div class="col-md-12 col-lg-12">
+
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+
+                            <div class="panel-body table-responsive" id="tableParent">
+
+                                <table id='table' class='table'>
+                                    <thead>
+                                        <tr>
+                                            <th>机器名称</th>
+                                            <th>货道号</th>
+                                            <th>当前药品</th>
+                                            <th>药品图片</th>
+                                            <th>生产厂家</th>
+                                            <th>规格</th>
+                                            <th>数量</th>
+                                            <th>折扣</th>
+                                            <th>保质日期</th>
+                                            <th>货道状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- 底部信息 -->
+    <div class="row footer" style="display:none">
+        <div class="col-md-6 text-left">
+            Copyright &copy; 2018.Company name All rights reserved.<a href="#">沈阳华天基曼龙有限公司</a>
+        </div>
+        <div class="col-md-6 text-right"></div>
+    </div>
+
+    <!-- 错误提示 -->
+    <div id="alerttop" class="Modern-alert Modern-alert-icon Modern-alert-click alert6 Modern-alert-top"></div>
+    <!-- 成功提示 -->
+    <div id="successtop" class="Modern-alert Modern-alert-icon Modern-alert-click alert3 Modern-alert-top"></div>
+
+    <!-- 修改货道信息弹出的对话框 -->
+    <div class="modal fade" id="alterMotor" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">修改</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="horizontal">
+                        <div class="form-group">
+                            <label for="machineName" class="form-label">机器名称：</label>
+                            <input type="text" class="form-control form-control-radius" id="machineName" value="" spellcheck="false" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="moterNumber" class="form-label">货道编号：</label>
+                            <input type="text" class="form-control form-control-radius" id="moterNumber" value="" spellcheck="false" disabled>
+                        </div>
+                        <div class="form-group" style="display:none">
+                            <label for="selling-price" class="form-label">药品售价(无折扣,保留两位小数)：</label>
+                            <input type="text" class="form-control form-control-radius" id="selling-price" value="0" spellcheck="false">
+                        </div>
+                        <div class="form-group">
+                            <label for="discount" class="form-label">折扣(0-1,最多两位小数)：</label>
+                            <input type="text" class="form-control form-control-radius" id="discount" value="1" spellcheck="false">
+                        </div>
+                        <div class="form-group">
+                            <label for="drugName" class="form-label">选择药品：</label>
+                            <select class="selectpicker form-control" data-live-search="true" id="drugName"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">药品图片：</label>
+                            <br>
+                            <img src="" width="30%" id="drugImage" />
+                        </div>
+                        <div class="form-group">
+                            <label for="lotNumber" class="form-label">药品批号：</label>
+                            <select class="selectpicker form-control" data-live-search="true" id="lotNumber">
+                                <option value="0">无</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="drugMes" class="form-label">药品信息：</label>
+                            <textarea class="form-control form-control" rows="12" id="drugMes" style="width: 100%;" disabled></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal" id="alterClose">关闭</button>
+                    <button type="button" class="btn btn-default" onclick="alterMo()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 统一折扣修改对话框 -->
+    <div class="modal fade" id="alterDis" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">修改折扣</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="horizontal">
+                        <div class="form-group">
+                            <label for="disMName" class="form-label">机器名称：</label>
+                            <input type="text" class="form-control form-control-radius" id="disMName" value="" spellcheck="false" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="alterDiscount" class="form-label">折扣(0-1,最多两位小数)：</label>
+                            <input type="text" class="form-control form-control-radius" id="alterDiscount" value="1" spellcheck="false">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal" id="disClose">关闭</button>
+                    <button type="button" class="btn btn-default" onclick="allDiscount()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 上药对话框 -->
+    <div class="modal fade" id="addStock" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">上药</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="horizontal">
+                        <div class="form-group">
+                            <label for="addSN" class="form-label">货道编号：</label>
+                            <input type="text" class="form-control form-control-radius" id="addSN" value="" spellcheck="false" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="addStockCount" class="form-label">上药数量：</label>
+                            <input type="text" class="form-control form-control-radius" id="addStockCount" value="1" spellcheck="false">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal" id="addSClose">关闭</button>
+                    <button type="button" class="btn btn-default" onclick="addDrug()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 下药对话框 -->
+    <div class="modal fade" id="subStock" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">下药</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="horizontal">
+                        <div class="form-group">
+                            <label for="subSN" class="form-label">货道编号：</label>
+                            <input type="text" class="form-control form-control-radius" id="subSN" value="" spellcheck="false" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="subStockCount" class="form-label">下药数量：</label>
+                            <input type="text" class="form-control form-control-radius" id="subStockCount" value="1" spellcheck="false">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal" id="subSClose">关闭</button>
+                    <button type="button" class="btn btn-default" onclick="subDrug()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- js文件 -->
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/datatables/datatables.min.js"></script> <!-- Data Tables -->
+    <script src="../js/bootstrap-select/bootstrap-select.js"></script> <!-- Bootstrap Select -->
+    <script src="../js/bootstrap-toggle/bootstrap-toggle.min.js"></script> <!-- Bootstrap Toggle -->
+    <script src="../js/moment/moment.min.js"></script> <!-- Moment.js -->
+    <script src="../js/date-range-picker/daterangepicker.js"></script> <!-- Bootstrap Date Range Picker -->
+
+    <script>
+        // 上药
+        function addDrug() {
+            var addNumber = $('#addStockCount').val();
+            var patt = new RegExp(/^\d+$/);
+            if (patt.test(addNumber)) {
+                if (parseInt(addNumber) > 0 && commonBind.AddStock($(currentRow).attr('data-id'), addNumber)) {
+                    //插入上药记录
+                    commonBind.AddUpDrugLog($(currentRow).attr('data-id'), addNumber);
+                    $("#successtop").text('上药成功');
+                    $("#alerttop").fadeOut(1);
+                    $("#successtop").fadeIn(350);
+                    if (timeout != null) {
+                        clearTimeout(timeout);
+                    }
+                    timeout = setTimeout(function () { $("#successtop").fadeOut(350); }, 2000);
+                    $('#addSClose').click();
+                    tb.draw(true);
+                } else {
+                    $("#alerttop").text('上药失败');
+                    $("#successtop").fadeOut(1);
+                    $("#alerttop").fadeIn(350);
+                    if (timeout != null) {
+                        clearTimeout(timeout);
+                    }
+                    timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                }
+            } else {
+                $("#alerttop").text('请输入正确数字');
+                $("#successtop").fadeOut(1);
+                $("#alerttop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+            }
+        }
+
+        // 下药
+        function subDrug() {
+            var subNumber = $('#subStockCount').val();
+            var patt = new RegExp(/^\d+$/);
+            if (patt.test(subNumber)) {
+                if (parseInt(subNumber) > parseInt($('td', currentRow).eq(6).text())) {
+                    $("#alerttop").text('下药数量不能大于当前数量');
+                    $("#successtop").fadeOut(1);
+                    $("#alerttop").fadeIn(350);
+                    if (timeout != null) {
+                        clearTimeout(timeout);
+                    }
+                    timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                    return;
+                }
+                if (commonBind.SubStock($(currentRow).attr('data-id'), subNumber)) {
+
+                    //插入下药记录
+                    commonBind.AddSubDrugLog($(currentRow).attr('data-id'), subNumber);
+                    $("#successtop").text('下药成功');
+                    $("#alerttop").fadeOut(1);
+                    $("#successtop").fadeIn(350);
+                    if (timeout != null) {
+                        clearTimeout(timeout);
+                    }
+                    timeout = setTimeout(function () { $("#successtop").fadeOut(350); }, 2000);
+                    $('#subSClose').click();
+                    tb.draw(true);
+                } else {
+                    $("#alerttop").text('下药失败');
+                    $("#successtop").fadeOut(1);
+                    $("#alerttop").fadeIn(350);
+                    if (timeout != null) {
+                        clearTimeout(timeout);
+                    }
+                    timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                }
+            } else {
+                $("#alerttop").text('请输入数字');
+                $("#successtop").fadeOut(1);
+                $("#alerttop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+            }
+        }
+
+        var currentRow = null;
+        // 获取当前按钮的行
+        function getRow(obj) {
+            return $(obj).parents('tr');
+        }
+
+
+        // 添加药品下拉列表项
+        var drugObj = JSON.parse(commonBind.DrugSelecter());
+        var dName = "<option value='0'>无</option>";
+        for (var dIndex = 0; dIndex < drugObj.length; dIndex++) {
+            dName += "<option value='" + drugObj[dIndex].id + "' data-drug-name='" + drugObj[dIndex].drug_name + "' data-specification='" + drugObj[dIndex].specification + "' data-factory='" + drugObj[dIndex].factory + "' data-image='" + drugObj[dIndex].drug_image + "' >" + drugObj[dIndex].drug_name + "</option>";
+            //dName += "<option value='" + drugObj[dIndex].id + "' data-selling-price='" + drugObj[dIndex].selling_price + "'  data-drug-name='" + drugObj[dIndex].drug_name + "' data-specification='" + drugObj[dIndex].specification + "' data-factory='" + drugObj[dIndex].factory + "' data-image='" + drugObj[dIndex].drug_image + "' >" + drugObj[dIndex].drug_name + "</option>";
+
+        }
+        $("#drugName").append(dName);
+        $('#drugName').selectpicker('refresh');
+        $('#drugName').selectpicker('render');
+
+        // 批号下拉列表项
+        function lotNumberSelecter() {
+            var drugId = $("#drugName").val();
+
+            $("#lotNumber").empty();
+            var lotName = "<option value='0'>无</option>";
+            if (drugId != '0' && drugId != 'undefined') {
+                var lotObj = JSON.parse(commonBind.LotNumberSelecter(drugId));
+                for (var lotItem in lotObj) {
+                    //lotName += "<option value='" + lotObj[lotItem].id + "' data-production-date='" + lotObj[lotItem].production_date + "'  data-deadline='" + lotObj[lotItem].deadline + "' data-purchase-price='" + lotObj[lotItem].purchase_price + "'>" + lotObj[lotItem].lot_number + "</option>";
+                    lotName += "<option value='" + lotObj[lotItem].id + "' data-selling-price='" + lotObj[lotItem].selling_price + "'   data-production-date='" + lotObj[lotItem].production_date + "'  data-deadline='" + lotObj[lotItem].deadline + "' data-purchase-price='" + lotObj[lotItem].purchase_price + "'>" + lotObj[lotItem].lot_number + "</option>";
+
+                }
+            }
+            $("#lotNumber").append(lotName);
+            $('#lotNumber').selectpicker('refresh');
+            $('#lotNumber').selectpicker('render');
+
+            if (drugId != '0' && drugId != 'undefined' && $("option[value=" + $(currentRow).attr("data-lot-id") + "]", "#lotNumber").length > 0) {
+                $("#lotNumber").selectpicker("val", $(currentRow).attr("data-lot-id"));
+                $("#lotNumber").change();
+            }
+        }
+
+        // 更改批号下拉列表项触发
+        $("#lotNumber").change(function () {
+            var logShow = "";
+            if ($("#lotNumber").val() != 0) {
+                var selectedObj = $("#lotNumber").find("option:selected");
+                // 设置批号信息
+                logShow = '批号:' + selectedObj.text() + "\n生产日期:" + selectedObj.attr('data-production-date') + "\n保质日期:" + selectedObj.attr('data-deadline') + "\n药品进价:" + selectedObj.attr('data-purchase-price') + "\n药品售价:" + selectedObj.attr('data-selling-price');
+            }
+            $("#drugMes").text(drugInfoShow + logShow);
+        });
+
+        var drugInfoShow = "";
+        // 更改药品下拉选项时，刷新批号下拉框选项
+        $("#drugName").change(function () {
+            // 设置机器名称
+            $("#machineName").val($('td', currentRow).eq(0).text());
+            // 设置货道编号
+            $("#moterNumber").val($('td', currentRow).eq(1).text());
+            if ($("#drugName").val() != 0) {
+                var selectedObj = $("#drugName").find("option:selected");
+                // 设置药品图片
+                $("#drugImage").attr('src', selectedObj.attr('data-image'));
+
+                // 设置药品信息
+                drugInfoShow = '药品名称:' + selectedObj.attr('data-drug-name') + "\n生产厂家:" + selectedObj.attr('data-factory') + "\n" + "规格:" + selectedObj.attr('data-specification') + "\n";
+                $("#drugMes").text(drugInfoShow);
+            } else {
+                $("#drugImage").attr('src', '')
+                $("#drugMes").text('');
+            }
+            lotNumberSelecter();
+        });
+
+        // 更改机器分组选项时，刷新机器名称和机器ID下拉框
+        $("#machine_group_id").change(function () {
+
+            machineIdNameSelecter($(this).val());
+        });
+        // 添加机器分组下拉列表项
+        var machineGroupObj = JSON.parse(commonBind.MachineGroupJson());
+        var machine_group_name = "<option value='0'>全部</option>"
+        for (var gindex = 0; gindex < machineGroupObj.length; gindex++) {
+            machine_group_name += "<option value='" + machineGroupObj[gindex].id + "'>" + machineGroupObj[gindex].machine_group_name + "</option>"
+        }
+        $("#machine_group_id").append(machine_group_name);
+        $('#machine_group_id').selectpicker('refresh');
+        $('#machine_group_id').selectpicker('render');
+
+        // 添加机器名称下拉列表
+        function machineIdNameSelecter(machineGourpId) {
+            $("#machine_name").empty();
+            var m_selecter_obj = JSON.parse(commonBind.MachineSelecterJson(machineGourpId));
+            var machineName = "<option value='0'>全部</option>"
+            for (var mindex = 0; mindex < m_selecter_obj.length; mindex++) {
+                machineName += "<option value='" + m_selecter_obj[mindex].id + "'>" + m_selecter_obj[mindex].machine_name + "</option>";
+            }
+            $("#machine_name").append(machineName);
+            $('#machine_name').selectpicker('refresh');
+            $('#machine_name').selectpicker('render');
+        }
+        machineIdNameSelecter('0');
+
+
+
+        // 添加表格
+        function fnTable(machineId) {
+            $("#tableParent").empty();
+            $("#tableParent").append("<table id='table' class='table'><thead><tr><th>机器名称</th><th>货道号</th><th>当前药品</th><th>药品图片</th><th>生产厂家</th><th>规格</th><th>数量</th><th>折扣</th><th>保质日期</th><th>货道状态</th><th>操作</th></tr></thead></table>");
+
+            return $('#table').DataTable({
+                //"processing": true, // 显示正在加载
+                "serverSide": true, // 服务器模式
+                "ajax": {
+                    "cache": false,
+                    "type": "POST",
+                    "dataType": "JSON",
+                    "url": "http://127.0.0.1:8081/motorInfo",
+                    "data": { "machineid": machineId + "" }
+                },
+                "pagingType": "full_numbers", // 显示全部分页按钮
+                "iDisplayLength": 100, // 每页显示条数
+                "bFilter": false, // 右上角过滤搜索
+                "bInfo": false,   // 左下角信息
+                "bLengthChange": false, // 左上角条数选择
+                "ordering": false, // 禁止排序
+                "createdRow": function (row, datat, index) {
+
+                    $(row).attr("data-id", datat.motor_id);
+                    $(row).attr("data-drug-id", datat.drug_id);
+                    $(row).attr("data-lot-id", datat.lot_id);
+                    //$(row).attr("data-selling-price", datat.selling_price);
+
+                    $(row).attr("data-discount", datat.discount);
+
+                    $('td', row).eq(0).text(selectMachineName);
+                    $('td', row).eq(3).html("<img src='" + datat.drug_image + "' width=\"20%\">");
+                    $('td', row).eq(7).text(parseFloat(datat.discount).toFixed(2));
+
+                    if (datat.drug_id == null) {
+                        $('td', row).eq(6).text('0');
+                        $('td', row).eq(8).text('0000-00-00');
+                    }
+                    if (datat.lot_id == null) {
+                        $('td', row).eq(8).text('0000-00-00');
+                    }
+
+                    if (datat.deadline != null && datat.deadline != '0000-00-00') {
+                        var dead = new Date(datat.deadline);
+                        var nowTime = new Date();
+                        nowTime.setMonth(nowTime.getMonth() + 6);
+                        if (dead < new Date()) {
+                            // 过期
+                            $('td', row).eq(8).addClass('danger');
+                        } else if (nowTime > dead) {
+                            // 保质日期剩余六个月以下
+                            $('td', row).eq(8).addClass('warning');
+                        } else {
+                            $('td', row).eq(8).addClass('success');
+                        }
+                    }
+
+                    if (datat.is_fault == '1') {
+                        $('td', row).eq(9).text('故障');
+                        $('td', row).eq(9).addClass('danger');
+                    } else {
+                        $('td', row).eq(9).text('正常');
+                        $('td', row).eq(9).addClass('success');
+                    }
+
+
+
+                    // 修改按钮，上药按钮，下药按钮
+                    //var alterButton = "<a class='btn btn-default' data-toggle='modal' data-target='#alterMotor' onclick='currentRow=getRow(this);$(\"#discount\").val($(currentRow).attr(\"data-discount\"));$(\"#selling-price\").val($(currentRow).attr(\"data-selling-price\"));$(\"#drugName\").selectpicker(\"val\", $(currentRow).attr(\"data-drug-id\"));$(\"#drugName\").change();'><i class='fa fa-gears'></i>修改</a>";
+                    var alterButton = "<a class='btn btn-default' data-toggle='modal' data-target='#alterMotor' onclick='currentRow=getRow(this);$(\"#discount\").val($(currentRow).attr(\"data-discount\")); $(\"#drugName\").selectpicker(\"val\", ($(currentRow).attr(\"data-drug-id\")==undefined?0:$(currentRow).attr(\"data-drug-id\")));$(\"#drugName\").change();'><i class='fa fa-gears'></i>修改</a>";
+
+                    var upButton = "";
+                    var subButton = "";
+                    if (datat.drug_id != null && datat.lot_id != null) {
+                        upButton += "<a class='btn btn-success' data-toggle='modal' data-target='#addStock' onclick='currentRow=getRow(this);$(\"#addStockCount\").val(\"1\");$(\"#addSN\").val($(\"td\", currentRow).eq(1).text())'><i class='fa fa-level-up'></i>上药</a>";
+                        if (parseInt(datat.stock) > 0) {
+                            subButton += "<a class='btn btn-danger' data-toggle='modal' data-target='#subStock' onclick='currentRow=getRow(this);$(\"#subStockCount\").val(\"1\");$(\"#subSN\").val($(\"td\", currentRow).eq(1).text())'><i class='fa fa-level-down'></i>下药</a>";
+                        }
+                    }
+
+
+                    $('td', row).eq(10).html(alterButton + "  " + upButton + "  " + subButton);
+                    //var td1 = $('td', row).eq(1);
+                    //td1.html('');
+                    //// 删除按钮，修改按钮
+                    //td1.append("<a  class='btn btn-danger' onclick='deleteGroupOp(this)'><i class='fa fa-trash-o'></i>删除</a>   ");
+                },
+                "language": {
+                    "paginate": {
+                        "first": "首页",
+                        "previous": "上一页",
+                        "next": "下一页",
+                        "last": "尾页"
+                    },
+                    "zeroRecords": "无数据"
+                },
+                "columns":
+                [
+                { "data": "motor_id", "width": "auto" },
+                { "data": "motor_number", "width": "auto" },
+                { "data": "drug_name", "width": "auto" },
+                { "data": "drug_image", "width": "250px" },
+                { "data": "factory", "width": "auto" },
+                { "data": "specification", "width": "auto" },
+                { "data": "stock", "width": "auto" },
+                { "data": "discount", "width": "auto" },
+                { "data": "deadline", "width": "auto" },
+                { "data": "is_fault", "width": "auto" },
+                { "data": "motor_number", "width": "auto" }
+                ],
+                "bAutoWidth": false
+            });
+        }
+
+        var selectMachineName = null;
+
+        var timeout = null;
+        var tb = null;
+        // 搜索
+        function mySearch() {
+            var machineId = $('#machine_name').val();
+            selectMachineName = $("#machine_name").find("option:selected").text();
+            if (machineId == "0") {
+                $("#alerttop").text('请选择机器');
+                $("#successtop").fadeOut(1);
+                $("#alerttop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                return;
+            }
+
+            // 添加表格
+            tb = fnTable(machineId);
+        }
+
+        // 统一折扣
+        function allDiscount() {
+            if ($('#machine_name').val() == '0') {
+                $("#alerttop").text('请选择机器');
+                $("#successtop").fadeOut(1);
+                $("#alerttop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                return;
+            }
+            var discount = $("#alterDiscount").val();
+            if (discount == "" || discount.trim() == "") {
+                $("#alerttop").text('折扣不能为空');
+                $("#successtop").fadeOut(1);
+                $("#alerttop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                return;
+            }
+            var patt = new RegExp(/^(([0-9]+\.[0-9]{1,2})|([0-9]*[0-9][0-9]*\.[0-9]{1,2})|([0-9]*[0-9][0-9]*))$/);
+            if (!patt.test(discount)) {
+                $("#alerttop").text('请输入正确的折扣值');
+                $("#successtop").fadeOut(1);
+                $("#alerttop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                return;
+            } else {
+                if (parseFloat(discount) > 1) {
+                    $("#alerttop").text('请输入正确的折扣值');
+                    $("#successtop").fadeOut(1);
+                    $("#alerttop").fadeIn(350);
+                    if (timeout != null) {
+                        clearTimeout(timeout);
+                    }
+                    timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                    return;
+                }
+            }
+            if (commonBind.AllDiscount($('#machine_name').val(), discount)) {
+                $("#successtop").text('更改折扣成功');
+                $("#alerttop").fadeOut(1);
+                $("#successtop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#successtop").fadeOut(350); }, 2000);
+                $("#disClose").click();
+            } else {
+                $("#alerttop").text('更改折扣失败');
+                $("#successtop").fadeOut(1);
+                $("#alerttop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+            }
+
+        }
+
+        // 修改货道信息
+        function alterMo() {
+            var patt = null;
+
+            //// 售价
+            //var sellprice = $('#selling-price').val();
+            //if (sellprice == '' || sellprice.trim() == '') {
+            //    $("#alerttop").text('请输入售价');
+            //    $("#successtop").fadeOut(1);
+            //    $("#alerttop").fadeIn(350);
+            //    if (timeout != null) {
+            //        clearTimeout(timeout);
+            //    }
+            //    timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+            //    return;
+            //} else {
+            //    patt = new RegExp(/^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[0-9][0-9]*\.[0-9]+)|([0-9]*[0-9][0-9]*))$/);
+            //    if (!patt.test(sellprice)) {
+            //        $("#alerttop").text('请输入正确的售价');
+            //        $("#successtop").fadeOut(1);
+            //        $("#alerttop").fadeIn(350);
+            //        if (timeout != null) {
+            //            clearTimeout(timeout);
+            //        }
+            //        timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+            //        return;
+            //    } else {
+            //        if (parseFloat(sellprice) < 0) {
+            //            $("#alerttop").text('请输入正确的折扣值');
+            //            $("#successtop").fadeOut(1);
+            //            $("#alerttop").fadeIn(350);
+            //            if (timeout != null) {
+            //                clearTimeout(timeout);
+            //            }
+            //            timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+            //            return;
+            //        }
+            //    }
+            //}
+
+            // 折扣
+            var dis = $('#discount').val();
+            if (dis == "" || dis.trim() == "") {
+                $("#alerttop").text('折扣不能为空');
+                $("#successtop").fadeOut(1);
+                $("#alerttop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                return;
+            } else {
+                patt = new RegExp(/^(([0-9]+\.[0-9]{1,2})|([0-9]*[0-9][0-9]*\.[0-9]{1,2})|([0-9]*[0-9][0-9]*))$/);
+                if (!patt.test(dis)) {
+                    $("#alerttop").text('请输入正确的折扣值');
+                    $("#successtop").fadeOut(1);
+                    $("#alerttop").fadeIn(350);
+                    if (timeout != null) {
+                        clearTimeout(timeout);
+                    }
+                    timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                    return;
+                } else {
+                    if (parseFloat(dis) > 1) {
+                        $("#alerttop").text('请输入正确的折扣值');
+                        $("#successtop").fadeOut(1);
+                        $("#alerttop").fadeIn(350);
+                        if (timeout != null) {
+                            clearTimeout(timeout);
+                        }
+                        timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                        return;
+                    }
+                }
+            }
+
+            // 药品id
+            var drug = $('#drugName').val();
+            // 批号id
+            var lotNumber = $("#lotNumber").val();
+
+
+
+            // 判断是否更换药品或批号
+            var oldDrugId = $(currentRow).attr("data-drug-id");
+            var oldLotId = $(currentRow).attr("data-lot-id");
+
+            var stock = parseInt($('td', currentRow).eq(6).text());
+            if (!(oldDrugId == null && '0' == drug)) {
+                if (oldDrugId != drug && stock > 0) {
+                    $("#alerttop").text('该货道上存在之前药品，请执行下药操作后在重新更改');
+                    $("#successtop").fadeOut(1);
+                    $("#alerttop").fadeIn(350);
+                    if (timeout != null) {
+                        clearTimeout(timeout);
+                    }
+                    timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+                    return;
+                }
+            }
+
+            //if (!(oldLotId == null && '0' == lotNumber)) {
+            //    if (oldLotId != lotNumber && stock > 0) {
+            //        $("#alerttop").text('该货道上存在之前药品，请执行下药操作后在重新更改');
+            //        $("#successtop").fadeOut(1);
+            //        $("#alerttop").fadeIn(350);
+            //        if (timeout != null) {
+            //            clearTimeout(timeout);
+            //        }
+            //        timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+            //        return;
+            //    }
+            //}
+
+
+
+
+            var motorId = $(currentRow).attr('data-id');
+
+
+
+            //if (commonBind.UpdateMotorInfo(motorId, sellprice, dis, drug, lotNumber)) {
+            if (commonBind.UpdateMotorInfo(motorId, '', dis, drug, lotNumber)) {
+                $("#successtop").text('货道信息修改成功');
+                $("#alerttop").fadeOut(1);
+                $("#successtop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#successtop").fadeOut(350); }, 2000);
+                $("#alterClose").click();
+                tb.draw(true); // 重新绘制表格
+            } else {
+                $("#alerttop").text('货道信息修改失败');
+                $("#successtop").fadeOut(1);
+                $("#alerttop").fadeIn(350);
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(function () { $("#alerttop").fadeOut(350); }, 2000);
+            }
+
+
+        }
+
+
+    </script>
+
+</body>
+</html>

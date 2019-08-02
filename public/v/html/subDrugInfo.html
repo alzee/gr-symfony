@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<!-- 主体布局架构 -->
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- css文件 -->
+    <link href="../css/root.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #edf0f5;
+        }
+    </style>
+
+    <!-- js文件 -->
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+<body>
+    <!-- 页面加载 -->
+    <div class="loading"><img src="../img/loading.gif" alt="加载中"></div>
+
+    <!-- 顶层 -->
+    <div id="top" class="clearfix">
+
+        <div class="applogo">
+            <a class="logo">菜单</a>
+        </div>
+
+        <!-- 隐藏显示菜单图标 -->
+        <a href="#" class="sidebar-open-button"><i class="fa fa-bars"></i></a>
+        <a href="#" class="sidebar-open-button-mobile"><i class="fa fa-bars"></i></a>
+
+        <!-- 页面标题 -->
+        <h1 class="title">自助售药机后台管理系统</h1>
+
+    </div>
+
+    <!-- 左侧栏 -->
+    <div class="sidebar clearfix">
+
+        <!-- 用户信息 -->
+        <div class="dropdown link">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle profilebox">
+                <img src="../img/profileimg.png" alt="img">
+                <div class="user-name"><b id="userInfo"></b><span class="caret"></span></div>
+            </a>
+            <script>
+                // 设置当前用户信息
+                $("#userInfo").text(user.realname + "(" + user.username + ")");
+            </script>
+            <ul class="dropdown-menu dropdown-menu-list dropdown-menu-right">
+                <li role="presentation" class="dropdown-header">选项</li>
+                <li><a href="login.html"><i class="fa falist fa-power-off"></i> 退出</a></li>
+            </ul>
+        </div>
+
+        <!-- 菜单 -->
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">机器管理</li>
+            <li><a href="runStatus.html"><span class="icon color5"><i class="fa fa-home"></i></span>运行状态</a></li>
+            <li>
+                <a href="#"><span class="icon color7"><i class="fa fa-laptop"></i></span>药机管理<span class="caret"></span></a>
+                <ul>
+                    <li><a href="machineGroup.html">机器分组</a></li>
+                    <li><a href="motorInfo.html">货道设置</a></li>
+                    <li><a href="machineInfo.html">机器信息设置</a></li>
+                    <li><a href="maintain.html">机器维护</a></li>
+                </ul>
+            </li>
+            <li><a href="wsdChart.html"><span class="icon color6"><i class="fa fa-bar-chart"></i></span>温湿度详情</a></li>
+            <li><a href="warningStatus.html"><span class="icon color6"><i class="fa fa-bar-chart"></i></span>警报详情</a></li>
+        </ul>
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">药品管理</li>
+            <li><a href="categoryInfo.html"><span class="icon color5"><i class="fa fa-folder"></i></span>分类管理</a></li>
+            <li><a href="drugInfo.html"><span class="icon color6"><i class="fa fa-calendar"></i></span>药品列表</a></li>
+            <li style="display:none"><a href="#"><span class="icon color7"><i class="fa fa-sort-amount-asc"></i></span>期效管理<span class="caret"></span></a></li>
+            <li><a href="lotNumber.html"><span class="icon color6"><i class="fa fa-file-word-o"></i></span>批号管理</a></li>
+            <li><a href="situation.html"><span class="icon color5"><i class="fa fa-folder"></i></span>病情管理</a></li>
+
+        </ul>
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">记录管理</li>
+            <li><a href="saleRecord.html"><span class="icon color5"><i class="fa fa-calendar-o"></i></span>销售记录</a></li>
+            <li style="display:none"> <a href=""><span class="icon color6"><i class="fa fa-calendar"></i></span>操作记录</a>
+            <li>
+                <a href="#"><span class="icon color7"><i class="fa fa-calendar-o"></i></span>药品记录<span class="caret"></span></a>
+                <ul>
+                    <li><a href="addDrugInfo.html">上药记录</a></li>
+                    <li><a href="subDrugInfo.html">撤药记录</a></li>
+                </ul>
+            </li>
+            <li><a href="" style="display:none"><span class="icon color6"><i class="fa fa-calendar"></i></span>报警记录</a></li>
+        </ul>
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">用户管理</li>
+            <li><a href="userInfo.html"><span class="icon color5"><i class="fa fa-user"></i></span>用户信息</a></li>
+        </ul>
+        <ul class="sidebar-panel nav" style="display:none">
+            <li class="sidetitle">财务管理</li>
+            <li><a href="blank1.html"><span class="icon color5"><i class="fa fa-calendar-o"></i></span>销售统计</a></li>
+        </ul>
+        <ul class="sidebar-panel nav">
+            <li class="sidetitle">其他设置</li>
+            <li><a href="sysSetting.html"><span class="icon color12"><i class="fa fa-cog"></i></span>系统设置</a></li>
+        </ul>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="content">
+
+        <!-- 当前页面的菜单位置 -->
+        <div class="page-header">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>记录管理</li>
+                <li>药品记录</li>
+                <li>下药记录</li>
+            </ol>
+        </div>
+
+        <!-- 内容 -->
+        <div class="container-padding container-widget" id="content">
+
+            <!-- 搜索条件 -->
+            <div class="row">
+
+                <div class="col-md-12 col-lg-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-title" style="font-size:15px">搜索条件</div>
+                        <div class="panel-body">
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <label for="machine_name" class="control-label form-label">机器名称：</label>
+                                    <select class="selectpicker" data-live-search="true" id="machine_name"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ordernum" class="control-label form-label">药品名称：</label>
+                                    <input type="text" class="form-control form-control-radius" id="ordernum">
+                                </div>
+                                <div class="form-group">
+                                    <a id="search" class="btn btn-rounded btn-default" onclick="mySearch()">查  询</a>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- 运行状态表格 -->
+            <div class="row">
+
+                <div class="col-md-12 col-lg-12">
+
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+
+                            <div class="panel-body table-responsive" id="tableParent">
+                                <table id="table" class="table "></table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- 底部信息 -->
+    <div class="row footer" style="display:none">
+        <div class="col-md-6 text-left">
+            Copyright &copy; 2018.Company name All rights reserved.<a href="#">沈阳华天基曼龙有限公司</a>
+        </div>
+        <div class="col-md-6 text-right"></div>
+    </div>
+
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/datatables/datatables.min.js"></script> <!-- Data Tables -->
+    <script src="../js/bootstrap-select/bootstrap-select.js"></script> <!-- Bootstrap Select -->
+    <script src="../js/bootstrap-toggle/bootstrap-toggle.min.js"></script> <!-- Bootstrap Toggle -->
+    <script src="../js/moment/moment.min.js"></script> <!-- Moment.js -->
+    <script src="../js/date-range-picker/daterangepicker.js"></script> <!-- Bootstrap Date Range Picker -->
+    <script src="../js/sweet-alert/sweet-alert.min.js"></script> <!-- Sweet Alert -->
+    <script src="../js/Modern-alert/main.js"></script><!-- Modern Alert -->
+
+    <script>
+
+        // 添加机器名称下拉列表和机器ID下拉列表
+        function machineIdNameSelecter(machineGourpId) {
+            $("#machine_name").empty();
+            //$("#machine_id").empty();
+            var m_selecter_obj = JSON.parse(commonBind.MachineSelecterJson(machineGourpId));
+            var machineName = "<option value='0'>全部</option>"
+            //var machineId = "<option value='0'>全部</option>"
+            for (var mindex = 0; mindex < m_selecter_obj.length; mindex++) {
+                machineName += "<option value='" + m_selecter_obj[mindex].id + "'>" + m_selecter_obj[mindex].machine_name + "</option>";
+                //machineId += "<option value='" + m_selecter_obj[mindex].id + "'>" + m_selecter_obj[mindex].machine_id + "</option>";
+            }
+            $("#machine_name").append(machineName);
+            //$("#machine_id").append(machineId);
+            $('#machine_name').selectpicker('refresh');
+            $('#machine_name').selectpicker('render');
+            //$('#machine_id').selectpicker('refresh');
+            //$('#machine_id').selectpicker('render');
+        }
+        machineIdNameSelecter('0');
+
+        var tb = null;
+        // 查询
+        function mySearch() {
+            var machineId = $('#machine_name').val();
+            var drugName = $('#ordernum').val();
+
+
+            $("#tableParent").empty();
+            $("#tableParent").append("<table id='table' class='table'><thead><tr><th>设备名称</th><th>药品名称</th><th>药品批号</th><th>下药时间</th><th>下药数量</th><th>货道编号</th></thead></table>");
+
+            return $('#table').DataTable({
+                //"processing": true, // 显示正在加载
+                "serverSide": true, // 服务器模式
+                "ajax": {
+                    "cache": false,
+                    "type": "POST",
+                    "dataType": "JSON",
+                    "url": "http://127.0.0.1:8081/subDrugInfo",
+                    "data": { "machineId": machineId + "", "drugName": drugName + "" }
+                },
+                "pagingType": "full_numbers", // 显示全部分页按钮
+                "iDisplayLength": 50, // 每页显示条数
+                "bFilter": false, // 右上角过滤搜索
+                "bInfo": false,   // 左下角信息
+                "bLengthChange": false, // 左上角条数选择
+                "ordering": false, // 禁止排序
+                "createdRow": function (row, datat, index) {
+                },
+                "language": {
+                    "paginate": {
+                        "first": "首页",
+                        "previous": "上一页",
+                        "next": "下一页",
+                        "last": "尾页"
+                    },
+                    "zeroRecords": "无数据"
+                },
+                "columns":
+                    [
+                        { "data": "machine_name", "width": "auto" },
+                        { "data": "drug_name", "width": "auto" },
+                        { "data": "lot_number", "width": "autp" },
+                        { "data": "op_time", "width": "auto" },
+                        { "data": "number", "width": "auto" },
+                        { "data": "motor_number", "width": "auto" }
+                    ],
+                "bAutoWidth": false
+            });
+        }
+        // 初始化表格
+        tb = mySearch();
+
+
+    </script>
+
+</body>
+</html>
