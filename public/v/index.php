@@ -6,4 +6,4 @@
  * @todo
  */
 
-require 'login.html';
+header('Location: html/login.html');
