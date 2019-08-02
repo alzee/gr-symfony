@@ -22,7 +22,7 @@ $upload_path = "./img/"; //上传文件的存放路径
 $randname=date("Y").date("m").date("d").date("H").date("i").date("s").rand(100, 999).".".$type;//上传文件随机命名
 //开始移动文件到相应的文件夹
 if(move_uploaded_file($file['tmp_name'],$upload_path.$randname)){
-    echo "http://192.168.10.55/v/img/".$randname;
+    echo 'http://' . $_SERVER['SERVER_NAME'] . rtrim($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_NAME'])) . 'img/' . $randname;
     // echo "http://47.93.41.72/img/".$randname;
 }else{
     echo "Failed";
