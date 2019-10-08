@@ -135,7 +135,7 @@ CREATE TABLE `category_info` (
   `category_name` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '分类名称',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uk_category_name` (`category_name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='药品分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='药品分类表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +144,7 @@ CREATE TABLE `category_info` (
 
 LOCK TABLES `category_info` WRITE;
 /*!40000 ALTER TABLE `category_info` DISABLE KEYS */;
-INSERT INTO `category_info` VALUES (107,'两性类别'),(101,'五官用药'),(106,'儿童用药'),(102,'外用类别'),(105,'感冒用药'),(103,'清热解毒'),(108,'肠胃用药'),(104,'解酒晕车');
+INSERT INTO `category_info` VALUES (101,'五官用药'),(141,'体温计'),(115,'便秘'),(142,'保健品'),(106,'儿童用药'),(132,'割伤'),(140,'卫生巾'),(113,'发热'),(126,'口腔溃疡'),(122,'呕吐'),(114,'咳嗽'),(124,'喉痛'),(102,'外用类别'),(112,'头痛'),(136,'妇科炎症'),(116,'尿路感染'),(105,'感冒'),(135,'晕车'),(130,'活血化淤'),(123,'消食'),(103,'清热解毒'),(131,'烫伤'),(125,'牙痛'),(118,'痔疮'),(117,'痛经'),(111,'皮炎'),(129,'眼干'),(133,'碰伤'),(108,'肠胃用药'),(120,'胃炎'),(121,'胃痛'),(119,'腹泻'),(134,'蚊虫叮咬'),(104,'解酒晕车'),(110,'过敏'),(137,'避孕'),(107,'避孕套'),(138,'验孕'),(139,'验徘卵期'),(127,'鼻塞'),(128,'鼻炎');
 /*!40000 ALTER TABLE `category_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -591,4 +591,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-08 18:05:01
+-- Dump completed on 2019-10-08 19:05:01
