@@ -313,7 +313,7 @@ CREATE TABLE `machine_info` (
 
 LOCK TABLES `machine_info` WRITE;
 /*!40000 ALTER TABLE `machine_info` DISABLE KEYS */;
-INSERT INTO `machine_info` VALUES (7,'01','客运南站店',1,0,2,1,7,7,0,0,0,0,0,0,0,0,0,0,0,0,1,0,'客运南站','2019-11-11 15:53:27','客运南站店'),(8,'8AB4EA52DA13E8E7C644ACF3462C61CD','澳门街店',1,0,2,0,7,7,0,0,0,0,0,0,0,0,0,0,0,0,1,0,'人民路十堰日报社','2019-11-11 14:25:40','国人大药房');
+INSERT INTO `machine_info` VALUES (7,'01','客运南站店',1,0,2,1,7,7,0,0,0,0,0,0,0,0,0,0,0,0,1,0,'客运南站','2019-11-11 16:36:54','客运南站店'),(8,'8AB4EA52DA13E8E7C644ACF3462C61CD','澳门街店',1,0,2,0,7,7,0,0,0,0,0,0,0,0,0,0,0,0,1,0,'人民路十堰日报社','2019-11-11 14:25:40','国人大药房');
 /*!40000 ALTER TABLE `machine_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -591,4 +591,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-11 16:05:01
+-- Dump completed on 2019-11-11 17:05:01
